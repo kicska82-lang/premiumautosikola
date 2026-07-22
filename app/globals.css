@@ -24,3 +24,40 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* ---------- PREMIUM UI ---------- */
+
+.section-title {
+  @apply text-5xl md:text-6xl font-black text-white;
+}
+
+.section-subtitle {
+  @apply mt-5 text-lg leading-8 text-gray-400 max-w-3xl mx-auto;
+}
+
+.section-label {
+  @apply uppercase tracking-[8px] text-amber-400 text-sm;
+}
+
+.card {
+  @apply rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl transition-all duration-500;
+}
+
+.card:hover {
+  @apply -translate-y-2 border-amber-400 shadow-2xl shadow-amber-500/20;
+}
+
+.gold-button {
+  @apply rounded-xl bg-amber-500 px-8 py-4 font-semibold text-black transition-all duration-300;
+}
+
+.gold-button:hover {
+  @apply bg-amber-400 scale-105;
+}
+
+.dark-button {
+  @apply rounded-xl border border-amber-500 px-8 py-4 font-semibold text-white transition-all duration-300;
+}
+
+.dark-button:hover {
+  @apply bg-amber-500 text-black;
+}
