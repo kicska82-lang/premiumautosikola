@@ -22,7 +22,7 @@ export default function Footer({ settings }: { settings: SiteSettings | null }) 
       </section>
       <section>
         <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-400">Kapcsolat</p>
-        <div className="mt-5 space-y-3 text-sm"><a href="tel:+36302352597" className="block transition hover:text-amber-300">+36-30-235-2597</a><a href="mailto:info@premiumautosiskola.hu" className="block transition hover:text-amber-300">info@premiumautosiskola.hu</a><p className="pt-2 leading-6">Felnőttképzési nyilvántartási szám:<br /><strong className="text-white">B/2020/005325</strong></p></div>
+        <div className="mt-5 space-y-3 text-sm"><a href="tel:+36203137137" className="block transition hover:text-amber-300">+36/20-3-137-137</a><a href="mailto:info@premiumautosiskola.hu" className="block transition hover:text-amber-300">info@premiumautosiskola.hu</a><p className="pt-2 leading-6">Felnőttképzési nyilvántartási szám:<br /><strong className="text-white">B/2020/005325</strong></p></div>
       </section>
       <section>
         <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-400">Iroda</p>

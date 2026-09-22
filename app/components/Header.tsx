@@ -6,7 +6,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 z-50 w-full border-b border-white/10 bg-[#0d162d]/95 backdrop-blur">
       <div className="hidden border-b border-white/10 md:block">
         <div className="mx-auto flex h-8 max-w-7xl items-center justify-end gap-6 px-6 text-xs font-semibold text-slate-300">
-          <a href="tel:+36302352597" className="transition hover:text-amber-300">+36-30-235-2597</a>
+          <a href="tel:+36203137137" className="transition hover:text-amber-300">+36/20-3-137-137</a>
           <a href="mailto:info@premiumautosiskola.hu" className="transition hover:text-amber-300">info@premiumautosiskola.hu</a>
           <span>4400 Nyíregyháza, Széchenyi utca 18.</span>
         </div>
