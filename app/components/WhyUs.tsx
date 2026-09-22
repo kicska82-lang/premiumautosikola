@@ -1,51 +1,20 @@
-const features = [
-  {
-    title: "Modern oktatóautók",
-    text: "Korszerű, biztonságos és kényelmes járművek a magabiztos vezetéshez.",
-    icon: "🚗",
-  },
-  {
-    title: "Tapasztalt oktatók",
-    text: "Türelmes, segítőkész és vizsgaközpontú oktatás minden tanulónknak.",
-    icon: "👨‍🏫",
-  },
-  {
-    title: "Rugalmas időpontok",
-    text: "Az órákat a tanulók időbeosztásához igazítjuk.",
-    icon: "📅",
-  },
-  {
-    title: "Magas sikeres vizsgaarány",
-    text: "Tanulóink nagy része első alkalommal sikeres vizsgát tesz.",
-    icon: "🏆",
-  },
-  {
-    title: "Online ügyintézés",
-    text: "Gyors jelentkezés és egyszerű kapcsolattartás online.",
-    icon: "💻",
-  },
-  {
-    title: "Részletfizetés",
-    text: "Kedvező fizetési lehetőségek a képzés teljes ideje alatt.",
-    icon: "💳",
-  },
-];
+import type { Feature } from "@/types/content";
 
-export default function WhyUs() {
+export default function WhyUs({ features }: { features: Feature[] }) {
   return (
     <section
       id="miert"
-      className="bg-[#070b18] py-28"
+      className="bg-[#1a2744] py-5"
     >
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="mb-20 text-center">
 
-          <p className="uppercase tracking-[8px] text-amber-400 text-sm">
+          <p className="text-xl font-semibold uppercase tracking-[0.25em] text-amber-400 md:text-2xl">
             Miért válassz minket?
           </p>
 
-          <h2 className="mt-5 text-5xl font-black text-white">
+          <h2 className="mt-4 text-3xl font-black text-white md:text-4xl">
             Több mint egy autósiskola
           </h2>
 

@@ -1,33 +1,20 @@
-const reviews = [
-  {
-    name: "Kovács Péter",
-    text: "Elsőre sikerült a forgalmi vizsgám. Az oktatóm végig türelmes és segítőkész volt.",
-  },
-  {
-    name: "Nagy Anna",
-    text: "Modern autók, jó hangulat és profi oktatás. Csak ajánlani tudom.",
-  },
-  {
-    name: "Szabó Zoltán",
-    text: "Nagyon korrekt autósiskola. Minden kérdésemre gyors választ kaptam.",
-  },
-];
+import type { Testimonial } from "@/types/content";
 
-export default function Testimonials() {
+export default function Testimonials({ testimonials, googleRating }: { testimonials: Testimonial[]; googleRating: string }) {
   return (
     <section
       id="velemenyek"
-      className="bg-[#050816] py-28"
+      className="bg-[#15203a] py-5"
     >
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="text-center mb-20">
 
-          <p className="uppercase tracking-[8px] text-amber-400 text-sm">
+          <p className="text-xl font-semibold uppercase tracking-[0.25em] text-amber-400 md:text-2xl">
             Vélemények
           </p>
 
-          <h2 className="mt-4 text-5xl font-black text-white">
+          <h2 className="mt-4 text-3xl font-black text-white md:text-4xl">
             Mit mondanak tanulóink?
           </h2>
 
@@ -38,7 +25,7 @@ export default function Testimonials() {
             </span>
 
             <span className="text-gray-300 text-lg">
-              4.9 / 5 Google értékelés
+              {googleRating}
             </span>
 
           </div>
@@ -47,19 +34,19 @@ export default function Testimonials() {
 
         <div className="grid gap-8 lg:grid-cols-3">
 
-          {reviews.map((review) => (
+          {testimonials.map((review) => (
 
             <div
-              key={review.name}
+              key={review.id}
               className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition duration-300 hover:-translate-y-2 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
             >
 
               <div className="text-amber-400 text-2xl mb-5">
-                ★★★★★
+                {"★".repeat(review.rating)}
               </div>
 
               <p className="leading-8 text-gray-300 italic">
-                "{review.text}"
+                &ldquo;{review.text}&rdquo;
               </p>
 
               <div className="mt-8 flex items-center gap-4">
@@ -75,7 +62,7 @@ export default function Testimonials() {
                   </h3>
 
                   <p className="text-sm text-gray-400">
-                    Google értékelés
+                    {review.source}
                   </p>
 
                 </div>

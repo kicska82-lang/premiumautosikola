@@ -2,41 +2,18 @@
 
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import type { Stat } from "@/types/content";
 
-export default function Stats() {
+export default function Stats({ stats }: { stats: Stat[] }) {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.3,
   });
 
-  const stats = [
-    {
-      number: 2500,
-      suffix: "+",
-      title: "Sikeres vizsga",
-    },
-    {
-      number: 15,
-      suffix: "+",
-      title: "Év tapasztalat",
-    },
-    {
-      number: 98,
-      suffix: "%",
-      title: "Elsőre sikeres vizsgák",
-    },
-    {
-      number: 4.9,
-      suffix: "★",
-      title: "Google értékelés",
-      decimals: 1,
-    },
-  ];
-
   return (
     <section
       ref={ref}
-      className="bg-[#070b18] py-24"
+      className="bg-[#1a2744] py-24"
     >
       <div className="mx-auto max-w-7xl px-6">
 

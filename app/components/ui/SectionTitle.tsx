@@ -12,11 +12,11 @@ export default function SectionTitle({
   return (
     <div className="mb-20 text-center">
 
-      <p className="text-sm uppercase tracking-[8px] text-amber-400">
+      <p className="text-xl font-semibold uppercase tracking-[0.25em] text-amber-400 md:text-2xl">
         {label}
       </p>
 
-      <h2 className="mt-4 text-5xl md:text-6xl font-black text-white">
+      <h2 className="mt-4 text-3xl font-black text-white md:text-4xl">
         {title}
       </h2>
 

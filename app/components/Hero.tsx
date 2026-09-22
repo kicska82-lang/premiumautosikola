@@ -1,105 +1,51 @@
-export default function Hero() {
-  return (
-    <section
-      id="fooldal"
-      className="relative min-h-screen overflow-hidden"
-    >
-      {/* Háttér */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/auto_ejszaka.png')",
-        }}
-      />
+import Image from "next/image";
+import Link from "next/link";
+import { CalendarDays, CarFront, Star, UsersRound } from "lucide-react";
+import type { HeroContent, Stat } from "@/types/content";
 
-      {/* Sötét réteg */}
-      <div className="absolute inset-0 bg-black/45" />
+const statIcons = [UsersRound, CarFront, CalendarDays, Star];
 
-      {/* Bal oldali gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent" />
+function withoutPromotion(description: string) {
+  return description
+    .replace(/Vezess nálunk 30 órát[^!\n]*!/giu, "")
+    .replace(/\n{2,}/g, "\n")
+    .trim();
+}
 
-      {/* Tartalom */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-8 pt-24">
+export default function Hero({ hero, stats }: { hero: HeroContent | null; stats: Stat[] }) {
+  if (!hero) return null;
+  const backgroundImage = hero.background_image === "/images/hero-bg.png"
+    ? "/images/nyiregyhaza-hosok-tere.png"
+    : hero.background_image;
 
-        <div className="max-w-lg">
+  return <section id="fooldal" className="relative isolate min-h-[620px] overflow-hidden bg-[#0a1124] pt-20 text-white lg:min-h-[650px]">
+    <Image
+      src={backgroundImage}
+      alt=""
+      fill
+      priority
+      sizes="100vw"
+      className="-z-30 object-cover object-center"
+      style={{ maskImage: "linear-gradient(to right, transparent 0%, black 48%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 48%)" }}
+    />
+    <div className="absolute inset-0 -z-20 bg-[#0a1124]/40" />
+    <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#0a1124] via-[#0a1124]/85 via-45% to-[#172542]/35" />
+    <div className="absolute inset-0 -z-20 bg-gradient-to-t from-[#0a1124] via-transparent to-[#0a1124]/45" />
 
-          {/* Város */}
-          <p className="mb-4 text-xs uppercase tracking-[8px] text-amber-400">
-            Nyíregyháza
-          </p>
-
-          {/* Cím */}
-          <h1 className="text-5xl md:text-6xl font-black leading-none text-white">
-            PRÉMIUM
-          </h1>
-
-          <h2 className="mb-8 text-5xl md:text-6xl font-black leading-none text-amber-400">
-            AUTÓSISKOLA
-          </h2>
-
-          {/* Leírás */}
-          <p className="mb-10 text-lg md:text-xl leading-8 text-gray-200">
-            Modern oktatás, kiváló oktatók és prémium élmény.
-            <br />
-            Szerezd meg jogosítványodat magabiztosan,
-            <br />
-            a legjobb autókkal.
-          </p>
-
-          {/* Gombok */}
-          <div className="flex gap-5 mb-14">
-
-            <a
-              href="#kapcsolat"
-              className="rounded-xl bg-amber-500 px-8 py-4 text-lg font-semibold text-black transition duration-300 hover:bg-amber-400 hover:scale-105"
-            >
-              Jelentkezem →
-            </a>
-
-            <a
-              href="#kepzesek"
-              className="rounded-xl border border-amber-500 px-8 py-4 text-lg font-semibold text-white transition duration-300 hover:bg-amber-500 hover:text-black"
-            >
-              Képzések →
-            </a>
-
-          </div>
-
-          {/* Statisztikák */}
-          <div className="flex gap-12">
-
-            <div>
-              <h3 className="text-4xl font-bold text-amber-400">
-                2500+
-              </h3>
-              <p className="text-sm text-gray-300">
-                sikeres vizsga
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-bold text-amber-400">
-                15+
-              </h3>
-              <p className="text-sm text-gray-300">
-                év tapasztalat
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-bold text-amber-400">
-                4.9 ★
-              </h3>
-              <p className="text-sm text-gray-300">
-                Google értékelés
-              </p>
-            </div>
-
-          </div>
-
+    <div className="relative mx-auto flex min-h-[540px] max-w-[1600px] flex-col px-6 pb-36 pt-20 lg:min-h-[570px] lg:px-10 lg:pt-24">
+      <div className="relative z-10 max-w-3xl">
+        <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.45em] text-amber-400">{hero.badge}</p>
+        <h1 className="whitespace-pre-line text-xl font-black uppercase italic leading-[0.95] tracking-tight sm:text-2xl lg:text-3xl xl:text-4xl">{hero.title}</h1>
+        <h2 className="mt-2 text-xl font-black uppercase italic leading-[0.95] tracking-tight text-amber-400 sm:text-2xl lg:text-3xl xl:text-4xl">{hero.accent_title}</h2>
+        <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-7 text-gray-100 lg:text-lg">{withoutPromotion(hero.description)}</p>
+        <div className="mt-7 flex flex-wrap gap-4">
+          <Link href="/jelentkezes" className="rounded-lg bg-gradient-to-br from-amber-300 to-amber-600 px-6 py-3 text-sm font-extrabold text-black shadow-lg shadow-amber-600/20 transition hover:scale-[1.02]">{hero.primary_button_text}</Link>
+          <Link href="/#kepzesek" className="rounded-lg border border-amber-400 bg-black/40 px-6 py-3 text-sm font-bold text-white transition hover:bg-amber-400 hover:text-black">Képzéseink</Link>
         </div>
-
       </div>
-    </section>
-  );
+    </div>
+    {stats.length > 0 && <div className="absolute bottom-10 left-1/2 z-20 w-[calc(100%-3rem)] max-w-[1500px] -translate-x-1/2 rounded-xl border border-amber-400/60 bg-black/75 px-4 py-4 backdrop-blur-md">
+      <div className="grid grid-cols-2 gap-y-4 md:grid-cols-4">{stats.slice(0, 4).map((stat, index) => { const Icon = statIcons[index] ?? Star; return <div key={stat.title} className="flex items-center justify-center gap-3 border-amber-400/25 px-3 md:border-r last:border-0"><Icon className="h-9 w-9 text-amber-400" strokeWidth={1.6} /><div><p className="text-2xl font-black text-amber-400">{stat.number}{stat.suffix}</p><p className="text-sm text-white">{stat.title}</p></div></div>; })}</div>
+    </div>}
+  </section>;
 }

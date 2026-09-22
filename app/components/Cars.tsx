@@ -1,60 +1,28 @@
-const cars = [
-  {
-    instructor: "Moravcsik Gábor",
-    car: "Suzuki Swift",
-    transmission: "Manuális váltó",
-    climate: "Klímás",
-    image: "/cars/swift.jpg",
-  },
-  {
-    instructor: "Török Tibor",
-    car: "Opel Astra J",
-    transmission: "Manuális váltó",
-    climate: "Klímás",
-    image: "/cars/astra-tibor.jpg",
-  },
-  {
-    instructor: "Rátonyi Róbert",
-    car: "Kia Ceed",
-    transmission: "Manuális váltó",
-    climate: "Klímás",
-    image: "/cars/ceed.jpg",
-  },
-  {
-    instructor: "Kicska Gábor",
-    car: "Opel Astra J",
-    transmission: "Manuális váltó",
-    climate: "Klímás",
-    image: "/cars/astra-gabor.jpg",
-  },
-];
+import Image from "next/image";
+import { localImageSrc } from "@/lib/images";
+import type { Car } from "@/types/content";
+import CarGallery from "./CarGallery";
 
-export default function Cars() {
+export default function Cars({ cars }: { cars: Car[] }) {
   return (
     <section
       id="autok"
-      className="relative overflow-hidden py-28"
+      className="relative overflow-hidden py-5"
     >
-      {/* Háttér */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/cars-bg.jpg')",
-        }}
-      />
+      <Image src="/images/hero-bg.png" alt="" fill sizes="100vw" className="object-cover object-center" />
 
       {/* Sötét overlay */}
-      <div className="absolute inset-0 bg-[#050816]/90" />
+      <div className="absolute inset-0 bg-[#15203a]/80" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
 
         <div className="mb-16 text-center">
 
-          <p className="text-sm uppercase tracking-[8px] text-amber-400">
+          <p className="text-xl font-semibold uppercase tracking-[0.25em] text-amber-400 md:text-2xl">
             Tanulóautóink
           </p>
 
-          <h2 className="mt-4 text-5xl font-black text-white">
+          <h2 className="mt-4 text-3xl font-black text-white md:text-4xl">
             Ismerd meg autóinkat
           </h2>
 
@@ -69,23 +37,15 @@ export default function Cars() {
 
           {cars.map((car) => (
             <div
-              key={car.instructor}
+              key={car.id}
               className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
             >
-              <div className="h-60 overflow-hidden">
-
-                <img
-                  src={car.image}
-                  alt={car.car}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                />
-
-              </div>
+              <CarGallery carName={car.name} images={car.gallery_images?.length ? car.gallery_images : [localImageSrc(car.image, "/images/fiesta.jpg")]} />
 
               <div className="p-6">
 
                 <h3 className="text-2xl font-bold text-white">
-                  {car.car}
+                  {car.name}
                 </h3>
 
                 <p className="mt-2 text-amber-400">
@@ -102,9 +62,7 @@ export default function Cars() {
 
                 </div>
 
-                <button className="mt-8 w-full rounded-xl bg-amber-500 py-3 font-semibold text-black transition hover:bg-amber-400">
-                  Jelentkezem
-                </button>
+                <p className="mt-7 text-sm font-semibold text-amber-300">Kattints a képre az autó részletes galériájához.</p>
 
               </div>
 

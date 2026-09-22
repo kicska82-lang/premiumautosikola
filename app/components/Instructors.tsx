@@ -1,53 +1,25 @@
-export default function Instructors() {
-  const instructors = [
-    {
-      name: "Moravcsik Gábor",
-      category: "B kategória",
-      experience: "15+ év tapasztalat",
-      description:
-        "Türelmes, gyakorlatorientált oktatás. A cél a magabiztos és biztonságos vezetés.",
-      image: "/instructor-placeholder.jpg",
-    },
-    {
-      name: "Török Tibor",
-      category: "B kategória",
-      experience: "12+ év tapasztalat",
-      description:
-        "Nyugodt, segítőkész oktató, aki minden tanulóra személyre szabott figyelmet fordít.",
-      image: "/instructor-placeholder.jpg",
-    },
-    {
-      name: "Rátonyi Róbert",
-      category: "B kategória",
-      experience: "10+ év tapasztalat",
-      description:
-        "Vizsgaközpontú felkészítés modern szemlélettel és türelmes hozzáállással.",
-      image: "/instructor-placeholder.jpg",
-    },
-    {
-      name: "Kicska Gábor",
-      category: "B kategória",
-      experience: "8+ év tapasztalat",
-      description:
-        "Barátságos légkör, modern oktatási módszerek és magas sikeres vizsgaarány.",
-      image: "/instructor-placeholder.jpg",
-    },
-  ];
+import Image from "next/image";
+import Link from "next/link";
+import { localImageSrc } from "@/lib/images";
+import type { Instructor } from "@/types/content";
+import InstructorCalendar from "./InstructorCalendar";
+
+export default function Instructors({ instructors }: { instructors: Instructor[] }) {
 
   return (
     <section
       id="oktatok"
-      className="bg-[#050816] py-24 text-white"
+      className="bg-[#15203a] py-5 text-white"
     >
       <div className="mx-auto max-w-7xl px-6">
 
         <div className="text-center mb-16">
 
-          <p className="text-amber-400 tracking-[8px] uppercase text-sm">
+          <p className="text-xl font-semibold uppercase tracking-[0.25em] text-amber-400 md:text-2xl">
             Oktatóink
           </p>
 
-          <h2 className="mt-4 text-5xl font-black">
+          <h2 className="mt-4 text-3xl font-black md:text-4xl">
             Ismerd meg oktatóinkat
           </h2>
 
@@ -63,25 +35,23 @@ export default function Instructors() {
           {instructors.map((item) => (
 
             <div
-              key={item.name}
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-[#0B1024] transition duration-300 hover:-translate-y-3 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
+              key={item.id}
+              className="group overflow-hidden rounded-3xl border border-white/10 bg-[#1d2a49] transition duration-300 hover:-translate-y-3 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
             >
 
-              <div className="h-72 overflow-hidden bg-gray-800">
+              <div className="relative h-72 overflow-hidden bg-gray-800">
 
-                <img
-                  src={item.image}
+                <Image
+                  src={localImageSrc(item.image, "/images/torok_tibor.jpg")}
                   alt={item.name}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                  className="object-cover transition duration-500 group-hover:scale-110"
                 />
 
               </div>
 
               <div className="p-8">
-
-                <span className="rounded-full bg-amber-500/20 px-4 py-1 text-sm text-amber-300">
-                  {item.category}
-                </span>
 
                 <h3 className="mt-5 text-2xl font-bold">
                   {item.name}
@@ -95,15 +65,11 @@ export default function Instructors() {
                   {item.experience}
                 </p>
 
-                <p className="mt-5 leading-7 text-gray-300">
-                  {item.description}
-                </p>
+                <p className="mt-5 flex flex-wrap items-baseline gap-x-2 text-gray-300"><span className="text-sm font-semibold uppercase tracking-wider text-amber-300">Oktatott kategóriák:</span>{item.category}</p>
 
-                <button
-                  className="mt-8 w-full rounded-xl bg-amber-500 py-3 font-semibold text-black transition hover:bg-amber-400"
-                >
-                  Jelentkezem hozzá
-                </button>
+                <Link href={`/oktatok/${item.id}`} className="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-amber-500 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+                  Bemutatkozás és időpontok →
+                </Link>
 
               </div>
 
@@ -112,6 +78,8 @@ export default function Instructors() {
           ))}
 
         </div>
+
+        <InstructorCalendar instructors={instructors} />
 
       </div>
     </section>
