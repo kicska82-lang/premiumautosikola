@@ -1,5 +1,6 @@
 update public.cars
-set gallery_images = '[
+set instructor = 'Kicska Gábor Zoltán',
+    gallery_images = '[
   "/images/kicska-gabor-autoval-v4.png",
   "/images/kicska-gabor-opel-kulso-v1.jpg",
   "/images/kicska-gabor-tanulokkal-v1.jpg",

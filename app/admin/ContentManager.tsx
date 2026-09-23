@@ -21,7 +21,13 @@ export default function ContentManager({ table, title, fields, records }: { tabl
     if (!window.confirm("Biztosan törlöd ezt az elemet?")) return;
     startTransition(async () => { try { await deleteRecord(table, id); setMessage("Az elem törölve."); } catch (error) { setMessage(error instanceof Error ? error.message : "Sikertelen törlés."); } });
   };
-  const displayValue = (value: unknown) => Array.isArray(value) && value.every((item) => typeof item === "string") ? value.join("\n") : typeof value === "object" && value !== null ? JSON.stringify(value, null, 2) : String(value ?? "");
+  const displayValue = (value: unknown, preserveJson = false) => preserveJson
+    ? JSON.stringify(value ?? [], null, 2)
+    : Array.isArray(value) && value.every((item) => typeof item === "string")
+      ? value.join("\n")
+      : typeof value === "object" && value !== null
+        ? JSON.stringify(value, null, 2)
+        : String(value ?? "");
   const fieldValue = (record: RecordValue, key: string) => (record as Record<string, unknown>)[key];
 
   return <div>
@@ -31,7 +37,7 @@ export default function ContentManager({ table, title, fields, records }: { tabl
       <h2 className="text-xl font-bold">{editing.id ? "Szerkesztés" : "Új elem"}</h2>
       {fields.map((field) => <label key={field.name} className="grid gap-1 text-sm font-medium">{field.label}
         {field.type === "availability" ? <AvailabilityEditor key={String(editing.id)} initialValue={fieldValue(editing, field.name)} />
-          : field.type === "textarea" || field.type === "json" ? <textarea name={field.name} required={field.required ?? field.name !== "experience"} rows={field.type === "json" ? 7 : 4} defaultValue={displayValue(fieldValue(editing, field.name))} placeholder={field.type === "json" ? '[{ "label": "Elmélet", "value": "60 000 Ft" }]' : undefined} className="rounded-lg border p-3 font-mono" />
+          : field.type === "textarea" || field.type === "json" ? <textarea name={field.name} required={field.required ?? field.name !== "experience"} rows={field.type === "json" ? 7 : 4} defaultValue={displayValue(fieldValue(editing, field.name), field.type === "json")} placeholder={field.type === "json" ? '[{ "label": "Elmélet", "value": "60 000 Ft" }]' : undefined} className="rounded-lg border p-3 font-mono" />
           : field.type === "image" ? <select name={field.name} required defaultValue={displayValue(fieldValue(editing, field.name)) || LOCAL_IMAGE_OPTIONS[0]} className="rounded-lg border p-3">{LOCAL_IMAGE_OPTIONS.map((image) => <option key={image} value={image}>{image}</option>)}</select>
           : <input name={field.name} type={field.type ?? "text"} required={field.required ?? field.name !== "experience"} defaultValue={displayValue(fieldValue(editing, field.name))} className="rounded-lg border p-3" />}
       </label>)}
