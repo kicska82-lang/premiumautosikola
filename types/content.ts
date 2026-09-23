@@ -114,7 +114,6 @@ export const LOCAL_IMAGE_OPTIONS = [
   "/images/torok_tibor_auto.jpg",
   "/images/torok_tibor_oktatas.jpg",
   "/images/Kicska_Gabor_auto.jpg",
-  "/images/kicska-gabor-autoval-v4.png",
   "/images/kicska-gabor-opel-kulso-v1.jpg",
   "/images/kicska-gabor-tanulokkal-v1.jpg",
   "/images/kicska-gabor-muszerfal-v1.jpg",
