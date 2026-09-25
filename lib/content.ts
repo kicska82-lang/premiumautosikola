@@ -37,9 +37,9 @@ const offlineHero: HeroContent = {
 const offlineSettings: SiteSettings = {
   id: "offline-settings",
   school_name: "Prémium Autósiskola",
-  phone: "+36/20-3-137-137",
+  phone: "+36/30-235-2597",
   email: "info@premiumautosiskola.hu",
-  address: "4400 Nyíregyháza, Széchenyi utca 18.",
+  address: "4400 Nyíregyháza, Széchenyi utca 17. földszint 2U. ajtó",
   google_rating: "4.9",
   stats: [
     { number: 2500, suffix: "+", title: "Sikeres vizsga" },
