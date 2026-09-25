@@ -14,6 +14,10 @@ function withoutPromotion(description: string) {
 
 export default function Hero({ hero, stats }: { hero: HeroContent | null; stats: Stat[] }) {
   if (!hero) return null;
+  const [introLine, ...highlightedLines] = withoutPromotion(hero.description)
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
   const backgroundImage = hero.background_image === "/images/hero-bg.png"
     ? "/images/nyiregyhaza-hosok-tere.png"
     : hero.background_image;
@@ -37,7 +41,12 @@ export default function Hero({ hero, stats }: { hero: HeroContent | null; stats:
         <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.45em] text-amber-400">{hero.badge}</p>
         <h1 className="whitespace-pre-line text-xl font-black uppercase italic leading-[0.95] tracking-tight sm:text-2xl lg:text-3xl xl:text-4xl">{hero.title}</h1>
         <h2 className="mt-2 text-xl font-black uppercase italic leading-[0.95] tracking-tight text-amber-400 sm:text-2xl lg:text-3xl xl:text-4xl">{hero.accent_title}</h2>
-        <p className="mt-6 max-w-3xl whitespace-pre-line text-base leading-7 text-gray-100 lg:text-lg">{withoutPromotion(hero.description)}</p>
+        <div className="mt-6 max-w-3xl text-base leading-7 lg:text-lg">
+          {introLine && <p className="text-gray-100">{introLine}</p>}
+          {highlightedLines.length > 0 && (
+            <p className="mt-2 font-extrabold text-amber-400">{highlightedLines.join(" ")}</p>
+          )}
+        </div>
         <div className="mt-7 flex flex-wrap gap-4">
           <Link href="/jelentkezes" className="rounded-lg bg-gradient-to-br from-amber-300 to-amber-600 px-6 py-3 text-sm font-extrabold text-black shadow-lg shadow-amber-600/20 transition hover:scale-[1.02]">{hero.primary_button_text}</Link>
           <Link href="/#kepzesek" className="rounded-lg border border-amber-400 bg-black/40 px-6 py-3 text-sm font-bold text-white transition hover:bg-amber-400 hover:text-black">Képzéseink</Link>
