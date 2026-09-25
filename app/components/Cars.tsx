@@ -33,16 +33,16 @@ export default function Cars({ cars }: { cars: Car[] }) {
 
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-8">
 
           {cars.map((car) => (
             <div
               key={car.id}
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
+              className="group flex w-full max-w-sm flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur transition-all duration-300 hover:-translate-y-2 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
             >
               <CarGallery carName={car.name} images={car.gallery_images?.length ? car.gallery_images : [localImageSrc(car.image, "/images/fiesta.jpg")]} />
 
-              <div className="p-6">
+              <div className="flex flex-1 flex-col items-center p-6 text-center">
 
                 <h3 className="text-2xl font-bold text-white">
                   {car.name}
@@ -52,7 +52,7 @@ export default function Cars({ cars }: { cars: Car[] }) {
                   {car.instructor}
                 </p>
 
-                <div className="mt-6 space-y-3 text-gray-300">
+                <div className="mt-6 space-y-3 text-center text-gray-300">
 
                   <p>🕹️ {car.transmission}</p>
 

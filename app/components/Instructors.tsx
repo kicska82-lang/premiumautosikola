@@ -30,13 +30,13 @@ export default function Instructors({ instructors }: { instructors: Instructor[]
 
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        <div className="flex flex-wrap justify-center gap-8">
 
           {instructors.map((item) => (
 
             <div
               key={item.id}
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-[#1d2a49] transition duration-300 hover:-translate-y-3 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
+              className="group flex w-full max-w-sm flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#1d2a49] transition duration-300 hover:-translate-y-3 hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-500/20"
             >
 
               <div className="relative h-72 overflow-hidden bg-gray-800">
@@ -51,7 +51,7 @@ export default function Instructors({ instructors }: { instructors: Instructor[]
 
               </div>
 
-              <div className="p-8">
+              <div className="flex flex-1 flex-col items-center p-8 text-center">
 
                 <h3 className="mt-5 text-2xl font-bold">
                   {item.name}
@@ -65,9 +65,9 @@ export default function Instructors({ instructors }: { instructors: Instructor[]
                   {item.experience}
                 </p>
 
-                <p className="mt-5 flex flex-wrap items-baseline gap-x-2 text-gray-300"><span className="text-sm font-semibold uppercase tracking-wider text-amber-300">Oktatott kategóriák:</span>{item.category}</p>
+                <p className="mt-5 flex flex-wrap items-baseline justify-center gap-x-2 text-gray-300"><span className="text-sm font-semibold uppercase tracking-wider text-amber-300">Oktatott kategóriák:</span>{item.category}</p>
 
-                <Link href={`/oktatok/${item.id}`} className="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-amber-500 py-3 text-sm font-semibold text-black transition hover:bg-amber-400">
+                <Link href={`/oktatok/${item.id}`} className="mt-7 inline-flex w-full items-center justify-center whitespace-nowrap rounded-xl bg-amber-500 px-3 py-3 text-xs font-semibold text-black transition hover:bg-amber-400 sm:text-sm">
                   Bemutatkozás és időpontok →
                 </Link>
 

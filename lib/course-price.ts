@@ -8,7 +8,9 @@ function asAmount(value: string): number {
 }
 
 export function calculateTrainingCost(details: PriceDetail[] | undefined, fallback: string): number {
-  if (!details?.length) return asAmount(fallback);
+  const declaredTotal = asAmount(fallback);
+  if (declaredTotal > 0) return declaredTotal;
+  if (!details?.length) return 0;
   return details
     .filter((detail) => !/pótóra/i.test(detail.label))
     .reduce((total, detail) => total + asAmount(/elmélet/i.test(detail.label) ? "40 000 Ft" : detail.value), 0);

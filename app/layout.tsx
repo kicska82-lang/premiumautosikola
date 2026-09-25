@@ -1,5 +1,6 @@
 import "@fontsource/manrope/latin.css";
 import "./globals.css";
+import PrivacyNotice from "./components/PrivacyNotice";
 
 export const metadata = {
   title: {
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="hu">
       <body className="min-h-screen font-sans bg-white text-slate-900 antialiased">
         {children}
+        <PrivacyNotice />
       </body>
     </html>
   );

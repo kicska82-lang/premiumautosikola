@@ -58,7 +58,7 @@ const offlineCourses: Course[] = [
   {
     id: "offline-b",
     title: "B kategória",
-    price: "310 000 Ft",
+    price: "315 000 Ft",
     icon: "🚗",
     features: ["Online KRESZ tanfolyam", "30 óra gyakorlati vezetés", "Vizsgafelkészítés"],
     minimum_age: "16,5 év",

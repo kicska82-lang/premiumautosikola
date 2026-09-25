@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { requireAdmin } from "@/lib/auth";
-import { calculateTrainingCost, formatForints } from "@/lib/course-price";
 import { LOCAL_IMAGE_OPTIONS } from "@/types/content";
 
 const tableSchema = z.enum(["courses", "instructors", "cars", "testimonials"]);
@@ -68,7 +67,7 @@ function normalizePayload(table: z.infer<typeof tableSchema>, raw: Record<string
 function databasePayload(table: z.infer<typeof tableSchema>, payload: Record<string, unknown>) {
   if (table === "courses") {
     const priceDetails = parsePriceDetails(payload.price_details);
-    return { ...payload, features: parseList(payload.features), price_details: priceDetails, price: formatForints(calculateTrainingCost(priceDetails, String(payload.price))) };
+    return { ...payload, features: parseList(payload.features), price_details: priceDetails, price: String(payload.price) };
   }
   if (table === "cars") return { ...payload, gallery_images: parseGalleryImages(payload.gallery_images) };
   if (table === "instructors") return { ...payload, availability: parseAvailability(payload.availability) };
