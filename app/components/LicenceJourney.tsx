@@ -4,8 +4,8 @@ import { ArrowRight, CarFront, ClipboardPenLine, MonitorPlay } from "lucide-reac
 const steps = [
   {
     number: "01",
-    title: "Jelentkezz akár online!",
-    text: "Válaszd ki a képzést, töltsd ki a jelentkezési űrlapot, és kollégánk segít a szükséges dokumentumok, valamint a következő lépések egyeztetésében.",
+    title: "Jelentkezz",
+    text: "Jelentkezhetsz személyesen az irodánkban vagy online. Válaszd ki a képzést, töltsd ki a jelentkezési űrlapot, és kollégánk segít a szükséges dokumentumok, valamint a következő lépések egyeztetésében.",
     icon: ClipboardPenLine,
     action: true,
   },

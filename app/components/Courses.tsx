@@ -1,5 +1,4 @@
 import CourseCards from "./CourseCards";
-import CourseCalculator from "./CourseCalculator";
 import type { Course } from "@/types/content";
 
 export default function Courses({ courses }: { courses: Course[] }) {
@@ -32,7 +31,6 @@ export default function Courses({ courses }: { courses: Course[] }) {
         </div>
 
         <CourseCards courses={courses} />
-        <div className="mt-12"><CourseCalculator courses={courses} /></div>
 
       </div>
     </section>

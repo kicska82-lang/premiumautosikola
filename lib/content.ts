@@ -21,7 +21,7 @@ const offlineHero: HeroContent = {
   badge: "Nyíregyháza",
   title: "VEZESS A SIKERHEZ,",
   accent_title: "A PRÉMIUM AUTÓSISKOLÁVAL!",
-  description: "Iratkozz be a Prémium Autósiskolába rejtett költségek nélkül!\nA célunk nem csupán a sikeres vizsga, hanem hogy magabiztos, biztonságos és önálló sofőrré válj.",
+  description: "Nyíregyháza legújabb autósiskolája – rejtett költségek nélkül!\nAz autóvezetés önállóságot és szabadságot ad. Megbízható oktatóink megtanítják az alapokat, és felkészítenek arra, hogy önállóan, tudatosan, szabályosan és biztonságosan közlekedj. A fejlődés közös munka: mi végig melletted leszünk, a sikerért pedig neked is tenned kell.",
   primary_button_text: "JELENTKEZEM →",
   primary_button_link: "/jelentkezes",
   secondary_button_text: "KÉPZÉSEINK",
