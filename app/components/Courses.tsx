@@ -24,7 +24,7 @@ export default function Courses({ courses }: { courses: Course[] }) {
           </h2>
 
           <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
-            Modern oktatás, prémium szolgáltatás és rugalmas időpontok.
+            Modern oktatás, prémium szolgáltatás, rugalmas időpontok és ütemezett részletfizetési lehetőség.
             Tanulj korszerű autókkal tapasztalt oktatóinktól.
           </p>
 
