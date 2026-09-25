@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Clock3, FileText, GraduationCap } from "lucide-react";
 import { calculateTrainingCost, displayedDetailValue, formatForints } from "@/lib/course-price";
 import type { Course } from "@/types/content";
+import { courseSlug } from "@/lib/course-details";
 
 export default function CourseCards({ courses }: { courses: Course[] }) {
   if (courses.length === 0) {
@@ -30,7 +31,7 @@ export default function CourseCards({ courses }: { courses: Course[] }) {
             </div>
             <div className="flex items-end justify-between gap-4"><div><p className="text-[11px] font-bold uppercase tracking-[0.16em] text-slate-400">Képzési díj</p><p className="mt-1 text-3xl font-black text-amber-400">{trainingCost}</p></div>{course.exam_fee && <div className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-right"><p className="text-[10px] uppercase tracking-wide text-slate-400">Vizsgadíj</p><p className="mt-1 text-sm font-bold text-white">{course.exam_fee}</p></div>}</div>
             <ul className="mt-6 space-y-2 border-t border-white/10 pt-5 text-sm text-slate-300">{course.features.slice(0, 3).map((feature) => <li key={feature} className="flex gap-2"><Check className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />{feature}</li>)}</ul>
-            <Link href={`/jelentkezes?course=${encodeURIComponent(course.id)}`} className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-300 to-amber-500 px-5 py-3 font-extrabold text-black transition hover:from-amber-200 hover:to-amber-400"><FileText className="h-4 w-4" />Jelentkezem<ArrowRight className="h-4 w-4" /></Link>
+            <Link href={`/kepzesek/${courseSlug(course)}`} className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-300 to-amber-500 px-5 py-3 font-extrabold text-black transition hover:from-amber-200 hover:to-amber-400"><FileText className="h-4 w-4" />Részletek és jelentkezés<ArrowRight className="h-4 w-4" /></Link>
           </article>
         );
       })}
