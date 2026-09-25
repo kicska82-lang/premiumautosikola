@@ -1,21 +1,32 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight, Check, Clock3, FileText, GraduationCap } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, Clock3, FileText, GraduationCap } from "lucide-react";
+import { useRef } from "react";
 import { calculateTrainingCost, displayedDetailValue, formatForints } from "@/lib/course-price";
 import type { Course } from "@/types/content";
 import { courseSlug } from "@/lib/course-details";
 
 export default function CourseCards({ courses }: { courses: Course[] }) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const move = (direction: -1 | 1) => railRef.current?.scrollBy({ left: direction * Math.min(920, railRef.current.clientWidth * 0.9), behavior: "smooth" });
   if (courses.length === 0) {
     return <p className="rounded-2xl border border-amber-400/30 bg-white/5 p-8 text-center text-slate-300">A képzések feltöltés alatt állnak.</p>;
   }
 
   return (
-    <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+    <div className="relative">
+      <div className="mb-5 flex items-center justify-end gap-3">
+        <p className="mr-auto text-sm text-slate-400">Húzd oldalra, vagy lapozz a kategóriák között.</p>
+        <button type="button" onClick={() => move(-1)} aria-label="Előző képzések" className="grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-white/5 text-white transition hover:border-amber-400 hover:text-amber-300"><ChevronLeft className="h-5 w-5" /></button>
+        <button type="button" onClick={() => move(1)} aria-label="Következő képzések" className="grid h-11 w-11 place-items-center rounded-xl border border-white/15 bg-white/5 text-white transition hover:border-amber-400 hover:text-amber-300"><ChevronRight className="h-5 w-5" /></button>
+      </div>
+      <div ref={railRef} className="-mx-6 flex snap-x snap-mandatory gap-7 overflow-x-auto px-6 pb-5 [scrollbar-color:#fbbf24_#1d2a49] [scrollbar-width:thin]">
       {courses.map((course, index) => {
         const trainingCost = formatForints(calculateTrainingCost(course.price_details, course.price));
 
         return (
-          <article key={course.id} className="group relative flex min-h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#1d2a49]/90 p-7 shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-amber-400/70 hover:shadow-amber-500/10">
+          <article key={course.id} className="group relative flex min-h-full w-[min(86vw,360px)] shrink-0 snap-start flex-col overflow-hidden rounded-3xl border border-white/10 bg-[#1d2a49]/90 p-7 shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-amber-400/70 hover:shadow-amber-500/10">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent opacity-70" />
             {index === 0 && <span className="absolute right-0 top-5 rounded-l-full bg-amber-400 px-4 py-1 text-xs font-black uppercase tracking-wide text-black">Legnépszerűbb</span>}
             <div className="flex items-start justify-between gap-4">
@@ -35,6 +46,7 @@ export default function CourseCards({ courses }: { courses: Course[] }) {
           </article>
         );
       })}
+      </div>
     </div>
   );
 }
