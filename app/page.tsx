@@ -1,6 +1,7 @@
 import { getPublicContent } from "@/lib/content";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import StudentBenefits from "./components/StudentBenefits";
 import LicenceJourney from "./components/LicenceJourney";
 import WhyUs from "./components/WhyUs";
 import Instructors from "./components/Instructors";
@@ -12,5 +13,5 @@ import Footer from "./components/Footer";
 export default async function Home() {
   const content = await getPublicContent();
 
-  return <><Header /><Hero hero={content.hero} stats={content.settings?.stats ?? []} /><LicenceJourney /><WhyUs features={content.settings?.features ?? []} /><Instructors instructors={content.instructors} /><Cars cars={content.cars} /><Courses courses={content.courses} /><Testimonials testimonials={content.testimonials} googleRating={content.settings?.google_rating ?? ""} /><Footer settings={content.settings} /></>;
+  return <><Header /><Hero hero={content.hero} stats={content.settings?.stats ?? []} /><StudentBenefits /><LicenceJourney /><WhyUs features={content.settings?.features ?? []} /><Instructors instructors={content.instructors} /><Cars cars={content.cars} /><Courses courses={content.courses} /><Testimonials testimonials={content.testimonials} googleRating={content.settings?.google_rating ?? ""} /><Footer settings={content.settings} /></>;
 }
