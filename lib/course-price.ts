@@ -13,7 +13,7 @@ export function calculateTrainingCost(details: PriceDetail[] | undefined, fallba
   if (!details?.length) return 0;
   return details
     .filter((detail) => !/pótóra/i.test(detail.label))
-    .reduce((total, detail) => total + asAmount(/elmélet/i.test(detail.label) ? "40 000 Ft" : detail.value), 0);
+    .reduce((total, detail) => total + asAmount(detail.value), 0);
 }
 
 export function formatForints(amount: number): string {
@@ -21,5 +21,5 @@ export function formatForints(amount: number): string {
 }
 
 export function displayedDetailValue(detail: PriceDetail): string {
-  return /elmélet/i.test(detail.label) && detail.value !== "–" ? "40 000 Ft" : detail.value;
+  return detail.value;
 }
