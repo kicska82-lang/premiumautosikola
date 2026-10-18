@@ -1,0 +1,150 @@
+.scene-shell {
+  width: 100% !important;
+  height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+}
+
+.canvas-card {
+  width: 400px !important;
+  max-width: 100% !important;
+}
+
+@media (min-width: 761px) {
+  .scene-shell {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+  }
+}
+
+.answer-editor {
+  display: none;
+}
+
+.workspace {
+  grid-template-columns: minmax(0, 400px) minmax(280px, 330px) !important;
+  justify-content: start;
+  gap: 14px !important;
+}
+
+.canvas-card {
+  margin: 0 !important;
+}
+
+.sign-posts {
+  display: inline !important;
+}
+
+[data-topic="all"] .topic-count {
+  display: none !important;
+}
+
+.scene-order-controls {
+  display: flex;
+  gap: 7px;
+}
+
+.scene-order-controls button {
+  padding: 7px 11px;
+  border: 1px solid #f4cc6355;
+  border-radius: 8px;
+  background: #17243b;
+  color: #f4cc63;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .workspace {
+    grid-template-columns: 1fr !important;
+  }
+
+  .canvas-card {
+    width: 360px !important;
+    max-width: 100% !important;
+  }
+
+  .scene-order-controls {
+    width: 100%;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+  .canvas-card {
+    width: 360px !important;
+  }
+
+  .workspace {
+    grid-template-columns: 360px minmax(260px, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+.answer-editor summary {
+  cursor: pointer;
+  color: #f4cc63;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.answer-editor label,
+.answer-editor small {
+  display: block;
+  margin-top: 10px;
+  color: #aebbd0;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.answer-editor button {
+  width: 100%;
+  margin-top: 7px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid #ffffff22;
+  background: #101a2d;
+  color: #fff;
+  font-size: 11px;
+}
+
+.order-vehicle-buttons,
+.order-connectors,
+.order-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.order-vehicle-buttons button {
+  width: auto;
+  min-width: 40px;
+  border-color: #f4cc6380;
+}
+
+.order-connectors button,
+.order-actions button {
+  background: #1d2b45;
+  color: #e8eef9;
+  font-weight: 700;
+}
+
+#correct-order-preview {
+  display: block;
+  min-height: 42px;
+  margin-top: 9px;
+  padding: 10px;
+  border: 1px solid #ffffff18;
+  border-radius: 8px;
+  background: #091426;
+  color: #f4cc63;
+  font-size: 14px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.answer-editor button {
+  border-color: #f4cc6380;
+  background: #f4cc63;
+  color: #17233a;
+  font-weight: 850;
+}
