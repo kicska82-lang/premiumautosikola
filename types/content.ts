@@ -105,6 +105,7 @@ export const LOCAL_IMAGE_OPTIONS = [
   "/images/logoo.png",
   "/images/hero-bg.png",
   "/images/nyiregyhaza-hosok-tere.png",
+  "/images/nyiregyhaza-premium-hero.webp",
   "/images/fiesta-premium.png",
   "/images/fiesta-hero.png",
   "/images/fiesta-hero-corrected.png",

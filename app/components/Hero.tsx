@@ -18,8 +18,8 @@ export default function Hero({ hero, stats }: { hero: HeroContent | null; stats:
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
-  const backgroundImage = hero.background_image === "/images/hero-bg.png"
-    ? "/images/nyiregyhaza-hosok-tere.png"
+  const backgroundImage = ["/images/hero-bg.png", "/images/nyiregyhaza-hosok-tere.png"].includes(hero.background_image)
+    ? "/images/nyiregyhaza-premium-hero.webp"
     : hero.background_image;
 
   return <section id="fooldal" className="relative isolate min-h-[620px] overflow-hidden bg-[#0a1124] pt-20 text-white lg:min-h-[650px]">
@@ -29,12 +29,11 @@ export default function Hero({ hero, stats }: { hero: HeroContent | null; stats:
       fill
       priority
       sizes="100vw"
-      className="-z-30 object-cover object-center"
-      style={{ maskImage: "linear-gradient(to right, transparent 0%, black 48%)", WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 48%)" }}
+      className="-z-30 object-cover object-[58%_center] sm:object-center"
     />
-    <div className="absolute inset-0 -z-20 bg-[#0a1124]/40" />
-    <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#0a1124] via-[#0a1124]/85 via-45% to-[#172542]/35" />
-    <div className="absolute inset-0 -z-20 bg-gradient-to-t from-[#0a1124] via-transparent to-[#0a1124]/45" />
+    <div className="absolute inset-0 -z-20 bg-[#0a1124]/15" />
+    <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#0a1124]/95 via-[#0a1124]/72 via-45% to-[#0a1124]/10" />
+    <div className="absolute inset-0 -z-20 bg-gradient-to-t from-[#0a1124]/85 via-transparent to-[#0a1124]/35" />
 
     <div className="relative mx-auto flex min-h-[540px] max-w-[1600px] flex-col px-6 pb-36 pt-20 lg:min-h-[570px] lg:px-10 lg:pt-24">
       <div className="relative z-10 max-w-3xl">
