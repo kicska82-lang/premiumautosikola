@@ -17,6 +17,7 @@ import {
   Laptop,
   Phone,
   ShieldCheck,
+  UserRoundCheck,
 } from "lucide-react";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
@@ -78,6 +79,30 @@ const faqs = [
   },
 ];
 
+const officialScreenshots = [
+  {
+    src: "/images/kreta-kepzoszerv-valasztas.webp",
+    alt: "A Személyesen választok képzőszervet lehetőség a KRÉTA eJogsi felületén",
+    number: "1",
+    title: "Válaszd a saját autósiskolát",
+    text: "A Gyakorlati képzőszerv választása fülön kattints a „Személyesen választok képzőszervet” kártya Kiválasztás gombjára.",
+  },
+  {
+    src: "/images/kreta-kepzoszerv-megerosites.webp",
+    alt: "A képzőszerv-választás megerősítő ablaka a KRÉTA eJogsi felületén",
+    number: "2",
+    title: "Erősítsd meg a választást",
+    text: "Olvasd el a tájékoztatást, jelöld be az elfogadást, majd küldd be. A KRÉTA figyelmeztetése szerint a beküldött választás nem módosítható és nem vonható vissza.",
+  },
+  {
+    src: "/images/kreta-dokumentum-letoltes.webp",
+    alt: "A Dokumentum gomb a KRÉTA eJogsi gyakorlati képzőszerv választási oldalán",
+    number: "3",
+    title: "Töltsd le a dokumentumot",
+    text: "A kiválasztás után megjelenő kék „Dokumentum” gombbal tölthető le a Képzési igazolás.",
+  },
+];
+
 export default async function KretaEJogsiPage() {
   const content = await getPublicContent();
 
@@ -113,6 +138,56 @@ export default async function KretaEJogsiPage() {
                 <Image src="/images/kreta-ejogsi-utmutato-nyiregyhaza-v2.webp" alt="Tanuló a digitális KRESZ-képzés után, képzési igazolással megkezdi a gyakorlati vezetést Nyíregyházán" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
               </div>
               <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-slate-400">Szemléltető, AI-támogatással készült illusztráció.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="max-w-3xl">
+              <p className="text-sm font-black uppercase tracking-[.2em] text-amber-300">Hivatalos KRÉTA-képernyőképek</p>
+              <h2 className="mt-3 text-3xl font-black sm:text-5xl">Így találod meg a letöltést</h2>
+              <p className="mt-4 leading-7 text-slate-300">A felület megjelenése idővel változhat. Mindig olvasd el a KRÉTA rendszerben megjelenő aktuális tájékoztatást a beküldés előtt.</p>
+            </div>
+            <div className="mt-10 space-y-7">
+              {officialScreenshots.map(({ src, alt, number, title, text }) => (
+                <article key={src} className="grid overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#111c34] shadow-xl shadow-black/15 lg:grid-cols-[1.35fr_.65fr]">
+                  <div className="relative aspect-[2.24/1] bg-white">
+                    <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 100vw, 65vw" className="object-contain" />
+                  </div>
+                  <div className="flex flex-col justify-center p-6 sm:p-8">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-300 font-black text-slate-950">{number}</span>
+                    <h3 className="mt-5 text-2xl font-black">{title}</h3>
+                    <p className="mt-3 leading-7 text-slate-300">{text}</p>
+                    <a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=130678801" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-amber-300 hover:text-amber-200">Forrás: KRÉTA Tudásbázis <ExternalLink className="h-3.5 w-3.5" /></a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-amber-300/25 bg-amber-300/10 py-16 sm:py-20">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 lg:grid-cols-[.75fr_1.25fr]">
+            <div>
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-300 text-slate-950"><UserRoundCheck className="h-8 w-8" /></span>
+              <p className="mt-6 text-sm font-black uppercase tracking-[.2em] text-amber-300">Kiemelten fontos 18 éves kor alatt</p>
+              <h2 className="mt-3 text-3xl font-black sm:text-5xl">Szülői jóváhagyás szükséges</h2>
+              <p className="mt-5 text-lg leading-8 text-amber-50">
+                Ha a tanuló még nem töltötte be a 18. életévét, a kiválasztott gyakorlati képzőszervet a szülőnek vagy törvényes képviselőnek is jóvá kell hagynia a <strong className="text-white">DKT eJogsi szülői felületén</strong>.
+              </p>
+              <ul className="mt-6 space-y-4 text-slate-200">
+                <li className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />A tanuló először kiválasztja a kívánt lehetőséget.</li>
+                <li className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />A választás ezután megjelenik a szülői felületen.</li>
+                <li className="flex gap-3"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />A szülő vagy törvényes képviselő jóváhagyhatja vagy elutasíthatja azt.</li>
+              </ul>
+              <p className="mt-6 rounded-2xl border border-amber-300/30 bg-black/20 p-5 font-bold leading-7 text-white">Jóváhagyás nélkül a 18 év alatti tanuló gyakorlati képzésre történő jelentkezése nem véglegesíthető.</p>
+            </div>
+            <figure className="overflow-hidden rounded-[1.75rem] border border-white/15 bg-white shadow-2xl shadow-black/30">
+              <div className="relative aspect-[2.29/1]">
+                <Image src="/images/kreta-szuloi-jovahagyas.webp" alt="A gyakorlati képzőszerv szülői jóváhagyása a KRÉTA eJogsi felületén" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-contain" />
+              </div>
+              <figcaption className="border-t border-slate-200 px-5 py-3 text-xs leading-5 text-slate-600">A szülői felület mintaképe tesztadatokkal. Forrás: <a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=130678801" target="_blank" rel="noreferrer" className="font-bold underline">KRÉTA Tudásbázis</a>.</figcaption>
             </figure>
           </div>
         </section>
