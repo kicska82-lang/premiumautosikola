@@ -110,14 +110,14 @@ export default async function KretaEJogsiPage() {
     <>
       <Header />
       <main className="flex min-h-screen flex-col overflow-hidden bg-[#0b1426] pt-28 text-white sm:pt-32">
-        <section className="relative order-1 pb-10 pt-5 sm:pb-14 sm:pt-8">
+        <section className="relative order-1 pb-7 pt-4 sm:pb-9 sm:pt-6">
           <div className="pointer-events-none absolute inset-x-0 -top-32 h-[640px] bg-[radial-gradient(circle_at_50%_0%,rgba(245,190,42,.2),transparent_62%)]" />
-          <div className="relative mx-auto grid max-w-6xl items-center gap-7 px-6 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="relative mx-auto grid max-w-5xl items-center gap-5 px-5 lg:grid-cols-[.9fr_1.1fr]">
             <div>
               <p className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/10 px-4 py-2 text-xs font-black uppercase tracking-[.18em] text-amber-300">
                 <BadgeCheck className="h-4 w-4" /> KRÉTA eJogsi segítség
               </p>
-              <h1 className="mt-5 text-3xl font-black leading-[1.08] tracking-tight sm:text-5xl">
+              <h1 className="mt-4 text-3xl font-black leading-[1.08] tracking-tight sm:text-4xl">
                 A KRESZ már megvan?
                 <span className="mt-2 block text-amber-300">Folytasd nálunk a vezetést!</span>
               </h1>
@@ -134,7 +134,7 @@ export default async function KretaEJogsiPage() {
                 </a>
               </div>
             </div>
-            <figure className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 shadow-2xl shadow-black/40">
+            <figure className="overflow-hidden rounded-2xl border border-white/15 bg-white/5 shadow-xl shadow-black/30">
               <div className="relative aspect-[3/2]">
                 <Image src="/images/kreta-ejogsi-utmutato-igazolassal-v3.webp" alt="Tanuló a KRÉTA Képzési igazolással megkezdi a gyakorlati vezetést Nyíregyházán" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
               </div>
@@ -143,24 +143,24 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-3 py-8 sm:py-10">
-          <div className="mx-auto max-w-5xl px-6">
+        <section className="order-3 py-7 sm:py-8">
+          <div className="mx-auto max-w-6xl px-5">
             <div className="max-w-3xl">
               <p className="text-sm font-black uppercase tracking-[.2em] text-amber-300">Hivatalos KRÉTA-képernyőképek</p>
-              <h2 className="mt-2 text-2xl font-black sm:text-4xl">Így találod meg a letöltést</h2>
+              <h2 className="mt-2 text-2xl font-black sm:text-3xl">Így találod meg a letöltést</h2>
               <p className="mt-4 leading-7 text-slate-300">A felület megjelenése idővel változhat. Mindig olvasd el a KRÉTA rendszerben megjelenő aktuális tájékoztatást a beküldés előtt.</p>
             </div>
-            <div className="mt-6 space-y-4">
+            <div className="mt-5 grid gap-4 lg:grid-cols-3">
               {officialScreenshots.map(({ src, alt, number, title, text }) => (
-                <article key={src} className="grid overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#111c34] shadow-xl shadow-black/15 lg:grid-cols-[1.35fr_.65fr]">
+                <article key={src} className="overflow-hidden rounded-2xl border border-white/10 bg-[#111c34] shadow-lg shadow-black/10">
                   <div className="relative aspect-[2.24/1] bg-white">
                     <Image src={src} alt={alt} fill sizes="(max-width: 1024px) 100vw, 65vw" className="object-contain" />
                   </div>
-                  <div className="flex flex-col justify-center p-4 sm:p-5">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-300 font-black text-slate-950">{number}</span>
-                    <h3 className="mt-4 text-xl font-black sm:text-2xl">{title}</h3>
-                    <p className="mt-3 leading-7 text-slate-300">{text}</p>
-                    <a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=130678801" target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 text-xs font-bold text-amber-300 hover:text-amber-200">Forrás: KRÉTA Tudásbázis <ExternalLink className="h-3.5 w-3.5" /></a>
+                  <div className="p-4">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-300 text-sm font-black text-slate-950">{number}</span>
+                    <h3 className="mt-3 text-lg font-black">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{text}</p>
+                    <a href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=130678801" target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-2 text-[11px] font-bold text-amber-300 hover:text-amber-200">Forrás: KRÉTA Tudásbázis <ExternalLink className="h-3 w-3" /></a>
                   </div>
                 </article>
               ))}
@@ -168,12 +168,12 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-4 border-y border-amber-300/25 bg-amber-300/10 py-8 sm:py-10">
-          <div className="mx-auto grid max-w-6xl items-center gap-6 px-6 lg:grid-cols-[.8fr_1.2fr]">
+        <section className="order-4 border-y border-amber-300/25 bg-amber-300/10 py-7 sm:py-8">
+          <div className="mx-auto grid max-w-5xl items-center gap-5 px-5 lg:grid-cols-[.9fr_1.1fr]">
             <div>
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-300 text-slate-950"><UserRoundCheck className="h-6 w-6" /></span>
               <p className="mt-4 text-sm font-black uppercase tracking-[.2em] text-amber-300">Kiemelten fontos 18 éves kor alatt</p>
-              <h2 className="mt-2 text-2xl font-black sm:text-4xl">Szülői jóváhagyás szükséges</h2>
+              <h2 className="mt-2 text-2xl font-black sm:text-3xl">Szülői jóváhagyás szükséges</h2>
               <p className="mt-4 leading-7 text-amber-50">
                 Ha a tanuló még nem töltötte be a 18. életévét, a kiválasztott gyakorlati képzőszervet a szülőnek vagy törvényes képviselőnek is jóvá kell hagynia a <strong className="text-white">DKT eJogsi szülői felületén</strong>.
               </p>
@@ -193,29 +193,29 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-2 border-y border-white/10 bg-[#111c34] py-8 sm:py-10">
-          <div className="mx-auto max-w-6xl px-6">
+        <section className="order-2 border-y border-white/10 bg-[#111c34] py-7 sm:py-8">
+          <div className="mx-auto max-w-6xl px-5">
             <div className="max-w-3xl">
               <p className="text-sm font-black uppercase tracking-[.2em] text-amber-300">Így csináld</p>
-              <h2 className="mt-2 text-2xl font-black sm:text-4xl">Négy lépés a gyakorlati képzésig</h2>
+              <h2 className="mt-2 text-2xl font-black sm:text-3xl">Négy lépés a gyakorlati képzésig</h2>
               <p className="mt-4 leading-7 text-slate-300">A menüpontok neve a KRÉTA felület frissítésével változhat, de a letöltendő dokumentum neve mindig fontos.</p>
             </div>
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {steps.map(({ icon: Icon, number, title, text }) => (
-                <article key={number} className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0b1426] p-5">
+                <article key={number} className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0b1426] p-4">
                   <span className="absolute right-5 top-2 text-7xl font-black text-white/[.035]">{number}</span>
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-300/10 text-amber-300"><Icon className="h-5 w-5" /></span>
-                  <h3 className="mt-4 text-xl font-black">{title}</h3>
-                  <p className="mt-3 leading-7 text-slate-300">{text}</p>
+                  <h3 className="mt-3 text-base font-black">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-300">{text}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="order-5 border-y border-white/10 bg-[#111c34] py-8 sm:py-10">
-          <div className="mx-auto grid max-w-6xl items-center gap-7 px-6 lg:grid-cols-[.8fr_1.2fr]">
-            <figure className="mx-auto w-full max-w-md overflow-hidden rounded-[1.5rem] border border-white/15 bg-white p-4 shadow-2xl shadow-black/30 sm:p-6">
+        <section className="order-5 border-y border-white/10 bg-[#111c34] py-7 sm:py-8">
+          <div className="mx-auto grid max-w-5xl items-center gap-6 px-5 lg:grid-cols-[.65fr_1.35fr]">
+            <figure className="mx-auto w-full max-w-xs overflow-hidden rounded-2xl border border-white/15 bg-white p-3 shadow-xl shadow-black/20">
               <Image
                 src="/images/kreta-kepzesi-igazolas-minta.webp"
                 alt="A KRÉTA DKT eJogsi rendszerből letölthető Képzési igazolás mintája"
@@ -230,7 +230,7 @@ export default async function KretaEJogsiPage() {
             </figure>
             <div>
               <p className="text-sm font-black uppercase tracking-[.2em] text-amber-300">Ezt a dokumentumot keresd</p>
-              <h2 className="mt-2 text-2xl font-black sm:text-4xl">Így néz ki a Képzési igazolás</h2>
+              <h2 className="mt-2 text-2xl font-black sm:text-3xl">Így néz ki a Képzési igazolás</h2>
               <p className="mt-4 leading-7 text-slate-300">
                 A dokumentum tetején a <strong className="text-white">„KÉPZÉSI IGAZOLÁS”</strong> megnevezés szerepel. Tartalmazza a kibocsátó intézmény, a tanuló és a képzés adatait, valamint a sikeres közlekedési alapismeretek vizsga időpontját.
               </p>
@@ -249,8 +249,8 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-6 py-8 sm:py-10">
-          <div className="mx-auto grid max-w-6xl gap-5 px-6 lg:grid-cols-[1.05fr_.95fr]">
+        <section className="order-6 py-7 sm:py-8">
+          <div className="mx-auto grid max-w-5xl gap-4 px-5 lg:grid-cols-[1.05fr_.95fr]">
             <div className="rounded-3xl border border-amber-300/30 bg-gradient-to-br from-amber-300/15 to-transparent p-6">
               <div className="flex items-start gap-4">
                 <span className="rounded-2xl bg-amber-300 p-3 text-slate-950"><CircleAlert className="h-7 w-7" /></span>
@@ -284,8 +284,8 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-7 border-y border-white/10 bg-[#111c34] py-8 sm:py-10">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="order-7 border-y border-white/10 bg-[#111c34] py-7 sm:py-8">
+          <div className="mx-auto max-w-5xl px-5">
             <div className="grid gap-8 lg:grid-cols-[.75fr_1.25fr]">
               <div>
                 <FileCheck2 className="h-9 w-9 text-amber-300" />
@@ -302,16 +302,16 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-8 py-8 sm:py-10">
-          <div className="mx-auto max-w-4xl px-6">
+        <section className="order-8 py-7 sm:py-8">
+          <div className="mx-auto max-w-3xl px-5">
             <div className="text-center">
               <HelpCircle className="mx-auto h-9 w-9 text-amber-300" />
-              <h2 className="mt-3 text-2xl font-black sm:text-4xl">Gyakori kérdések</h2>
+              <h2 className="mt-3 text-2xl font-black sm:text-3xl">Gyakori kérdések</h2>
             </div>
             <div className="mt-7 space-y-3">
               {faqs.map(({ question, answer }) => (
-                <details key={question} className="group rounded-2xl border border-white/10 bg-white/[.045] p-5 open:border-amber-300/30 sm:p-6">
-                  <summary className="cursor-pointer list-none pr-8 text-lg font-black marker:hidden">{question}</summary>
+                <details key={question} className="group rounded-xl border border-white/10 bg-white/[.045] p-4 open:border-amber-300/30">
+                  <summary className="cursor-pointer list-none pr-8 font-black marker:hidden">{question}</summary>
                   <p className="mt-4 border-t border-white/10 pt-4 leading-7 text-slate-300">{answer}</p>
                 </details>
               ))}
@@ -319,13 +319,13 @@ export default async function KretaEJogsiPage() {
           </div>
         </section>
 
-        <section className="order-9 px-6 pb-14">
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-amber-300/30 bg-gradient-to-r from-amber-300 to-amber-400 p-7 text-slate-950 shadow-2xl shadow-amber-950/20 sm:p-9">
+        <section className="order-9 px-5 pb-10">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-amber-300/30 bg-gradient-to-r from-amber-300 to-amber-400 p-6 text-slate-950 shadow-xl shadow-amber-950/20">
             <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
               <div>
                 <ShieldCheck className="h-9 w-9" />
-                <h2 className="mt-4 text-3xl font-black sm:text-4xl">Elakadtál? Segítünk elindulni.</h2>
-                <p className="mt-3 max-w-2xl text-lg font-semibold text-slate-800">Jelentkezz átlátható díjakkal, rejtett költségek nélkül, vagy hívd a +36/30-235-2597 telefonszámot. Együtt ellenőrizzük, hogy minden szükséges dokumentumod megvan-e.</p>
+                <h2 className="mt-3 text-2xl font-black sm:text-3xl">Elakadtál? Segítünk elindulni.</h2>
+                <p className="mt-2 max-w-2xl font-semibold text-slate-800">Jelentkezz átlátható díjakkal, rejtett költségek nélkül, vagy hívd a +36/30-235-2597 telefonszámot. Együtt ellenőrizzük, hogy minden szükséges dokumentumod megvan-e.</p>
               </div>
               <Link href="/jelentkezes" className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0b1426] px-7 py-4 font-black text-white transition hover:bg-[#162442]">Jelentkezem <ArrowRight className="h-5 w-5" /></Link>
             </div>
