@@ -4,7 +4,7 @@ export default function WhyUs({ features }: { features: Feature[] }) {
   return (
     <section
       id="miert"
-      className="bg-[#1a2744] py-10 md:py-12"
+      className="bg-[#1a2744] pb-10 pt-3 md:pb-12 md:pt-4"
     >
       <div className="mx-auto max-w-7xl px-6">
 

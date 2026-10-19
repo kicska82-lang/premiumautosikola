@@ -41,7 +41,7 @@ const steps = [
 
 export default function StudentBenefits() {
   return (
-    <section id="ut-a-jogsihoz" className="bg-[#1a2744] py-10 text-white md:py-14">
+    <section id="ut-a-jogsihoz" className="bg-[#1a2744] pb-3 pt-10 text-white md:pb-4 md:pt-14">
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#15203a] shadow-2xl shadow-black/25">
         <div className="grid lg:grid-cols-[1.45fr_.55fr]">
           <div className="p-6 sm:p-8 lg:p-10">
