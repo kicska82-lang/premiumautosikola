@@ -35,7 +35,7 @@ export default function Hero({ hero, stats }: { hero: HeroContent | null; stats:
     <div className="absolute inset-0 -z-20 bg-gradient-to-r from-[#0a1124]/95 via-[#0a1124]/72 via-45% to-[#0a1124]/10" />
     <div className="absolute inset-0 -z-20 bg-gradient-to-t from-[#0a1124]/85 via-transparent to-[#0a1124]/35" />
 
-    <div className="relative mx-auto flex min-h-[540px] max-w-[1600px] flex-col px-6 pb-36 pt-20 lg:min-h-[570px] lg:px-10 lg:pt-24">
+    <div className="relative mx-auto flex min-h-[540px] max-w-[1600px] flex-col px-6 pb-8 pt-20 md:pb-36 lg:min-h-[570px] lg:px-10 lg:pt-24">
       <div className="relative z-10 max-w-3xl">
         <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.45em] text-amber-400">{hero.badge}</p>
         <h1 className="whitespace-pre-line text-xl font-black uppercase italic leading-[0.95] tracking-tight sm:text-2xl lg:text-3xl xl:text-4xl">{hero.title}</h1>
@@ -52,7 +52,7 @@ export default function Hero({ hero, stats }: { hero: HeroContent | null; stats:
         </div>
       </div>
     </div>
-    {stats.length > 0 && <div className="absolute bottom-10 left-1/2 z-20 w-[calc(100%-3rem)] max-w-[1500px] -translate-x-1/2 rounded-xl border border-amber-400/60 bg-black/75 px-4 py-4 backdrop-blur-md">
+    {stats.length > 0 && <div className="relative z-20 mx-auto mb-8 w-[calc(100%-3rem)] max-w-[1500px] rounded-xl border border-amber-400/60 bg-black/75 px-4 py-4 backdrop-blur-md md:absolute md:bottom-10 md:left-1/2 md:mb-0 md:-translate-x-1/2">
       <div className="grid grid-cols-2 gap-y-4 md:grid-cols-4">{stats.slice(0, 4).map((stat, index) => { const Icon = statIcons[index] ?? Star; return <div key={stat.title} className="flex items-center justify-center gap-3 border-amber-400/25 px-3 md:border-r last:border-0"><Icon className="h-9 w-9 text-amber-400" strokeWidth={1.6} /><div><p className="text-2xl font-black text-amber-400">{stat.number}{stat.suffix}</p><p className="text-sm text-white">{stat.title}</p></div></div>; })}</div>
     </div>}
   </section>;
