@@ -4,15 +4,12 @@ import Link from "next/link";
 import {
   ArrowRight,
   BadgeCheck,
-  CalendarClock,
   CarFront,
   CheckCircle2,
-  CircleAlert,
   Download,
   ExternalLink,
   FileCheck2,
   GraduationCap,
-  HeartPulse,
   HelpCircle,
   Laptop,
   Phone,
@@ -245,41 +242,6 @@ export default async function KretaEJogsiPage() {
               >
                 Eredeti kép és hivatalos útmutató <ExternalLink className="h-4 w-4" />
               </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="order-6 py-7 sm:py-8">
-          <div className="mx-auto grid max-w-5xl gap-4 px-5 lg:grid-cols-[1.05fr_.95fr]">
-            <div className="rounded-3xl border border-amber-300/30 bg-gradient-to-br from-amber-300/15 to-transparent p-6">
-              <div className="flex items-start gap-4">
-                <span className="rounded-2xl bg-amber-300 p-3 text-slate-950"><CircleAlert className="h-7 w-7" /></span>
-                <div>
-                  <p className="text-sm font-black uppercase tracking-[.18em] text-amber-300">Erre nagyon figyelj</p>
-                  <h2 className="mt-2 text-3xl font-black">Csak a Képzési igazolás megfelelő</h2>
-                </div>
-              </div>
-              <div className="mt-7 rounded-2xl border border-white/10 bg-black/20 p-5">
-                <p className="flex gap-3 font-bold text-emerald-300"><CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" /> Képzési igazolás – ezt töltsd le</p>
-                <div className="mt-4 space-y-3 text-sm text-slate-300">
-                  <p>✕ Igazolás sikeres KRESZ képzésről</p>
-                  <p>✕ Igazolás sikeres KRESZ vizsgáról</p>
-                </div>
-              </div>
-              <p className="mt-5 leading-7 text-amber-50">A két hasonló nevű igazolás nem érvényes az autósiskolához történő átjelentkezésre.</p>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
-              <article className="rounded-3xl border border-white/10 bg-white/[.045] p-6">
-                <CalendarClock className="h-7 w-7 text-amber-300" />
-                <h3 className="mt-4 text-xl font-black">Fontos határidők</h3>
-                <p className="mt-3 leading-7 text-slate-300">Az eJogsi képzés és vizsga teljesítésére 12 hónap áll rendelkezésre. A sikeres KRESZ-vizsga után a gyakorlati képzőszerv választása és a dokumentum letöltése legfeljebb 24 hónapig maradhat elérhető.</p>
-              </article>
-              <article className="rounded-3xl border border-white/10 bg-white/[.045] p-6">
-                <HeartPulse className="h-7 w-7 text-amber-300" />
-                <h3 className="mt-4 text-xl font-black">Orvosi alkalmasság</h3>
-                <p className="mt-3 leading-7 text-slate-300">Érvényes TAJ-számmal az eJogsi programhoz kapcsolódó orvosi alkalmassági vizsgálat díjmentes lehet. TAJ nélkül a vizsgálat díjköteles.</p>
-              </article>
             </div>
           </div>
         </section>
