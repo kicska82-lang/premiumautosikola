@@ -110,7 +110,7 @@ export default async function KretaEJogsiPage() {
             </div>
             <figure className="overflow-hidden rounded-[2rem] border border-white/15 bg-white/5 shadow-2xl shadow-black/40">
               <div className="relative aspect-[3/2]">
-                <Image src="/images/kreta-ejogsi-utmutato-v1.webp" alt="Tanuló a digitális KRESZ-képzés után képzési igazolással megkezdi a gyakorlati vezetést" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
+                <Image src="/images/kreta-ejogsi-utmutato-nyiregyhaza-v2.webp" alt="Tanuló a digitális KRESZ-képzés után, képzési igazolással megkezdi a gyakorlati vezetést Nyíregyházán" fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
               </div>
               <figcaption className="border-t border-white/10 px-5 py-3 text-xs text-slate-400">Szemléltető, AI-támogatással készült illusztráció.</figcaption>
             </figure>
@@ -133,6 +133,42 @@ export default async function KretaEJogsiPage() {
                   <p className="mt-3 leading-7 text-slate-300">{text}</p>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-white/10 bg-[#111c34] py-16 sm:py-20">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 lg:grid-cols-[.8fr_1.2fr]">
+            <figure className="mx-auto w-full max-w-md overflow-hidden rounded-[1.5rem] border border-white/15 bg-white p-4 shadow-2xl shadow-black/30 sm:p-6">
+              <Image
+                src="/images/kreta-kepzesi-igazolas-minta.webp"
+                alt="A KRÉTA DKT eJogsi rendszerből letölthető Képzési igazolás mintája"
+                width={624}
+                height={732}
+                sizes="(max-width: 1024px) 90vw, 420px"
+                className="h-auto w-full"
+              />
+              <figcaption className="mt-4 border-t border-slate-200 pt-3 text-xs leading-5 text-slate-600">
+                Mintadokumentum, fiktív adatokkal. Forrás: KRÉTA Tudásbázis.
+              </figcaption>
+            </figure>
+            <div>
+              <p className="text-sm font-black uppercase tracking-[.2em] text-amber-300">Ezt a dokumentumot keresd</p>
+              <h2 className="mt-3 text-3xl font-black sm:text-5xl">Így néz ki a Képzési igazolás</h2>
+              <p className="mt-5 text-lg leading-8 text-slate-300">
+                A dokumentum tetején a <strong className="text-white">„KÉPZÉSI IGAZOLÁS”</strong> megnevezés szerepel. Tartalmazza a kibocsátó intézmény, a tanuló és a képzés adatait, valamint a sikeres közlekedési alapismeretek vizsga időpontját.
+              </p>
+              <div className="mt-6 rounded-2xl border border-amber-300/25 bg-amber-300/10 p-5 text-sm leading-7 text-amber-50">
+                A képen látható személyes adatok fiktív mintaadatok. A saját igazolásodat ne tedd közzé, és csak az ügyintézéshez szükséges csatornán add át.
+              </div>
+              <a
+                href="https://tudasbazis.ekreta.hu/pages/viewpage.action?pageId=130678801"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-white/15 px-5 py-3 font-bold text-amber-300 transition hover:border-amber-300 hover:bg-amber-300 hover:text-slate-950"
+              >
+                Eredeti kép és hivatalos útmutató <ExternalLink className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </section>
