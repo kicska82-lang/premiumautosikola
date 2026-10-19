@@ -26,9 +26,10 @@ export default function Header() {
         </div>
 
         {/* Menü */}
-        <nav className="hidden gap-8 text-white lg:flex">
+        <nav className="hidden items-center gap-5 text-sm text-white lg:flex xl:gap-7 xl:text-base">
           <Link href="/#fooldal" className="font-semibold transition hover:text-amber-400">Főoldal</Link>
           <Link href="/#kepzesek" className="font-semibold transition hover:text-amber-400">Képzések</Link>
+          <Link href="/kreta-ejogsi" className="rounded-full border border-amber-400/35 bg-amber-400/10 px-3 py-1.5 font-bold text-amber-300 transition hover:bg-amber-400 hover:text-slate-950">KRÉTA eJogsi</Link>
           <Link href="/#oktatok" className="font-semibold transition hover:text-amber-400">Oktatók</Link>
           <Link href="/#autok" className="font-semibold transition hover:text-amber-400">Autók</Link>
           <Link href="/#velemenyek" className="font-semibold transition hover:text-amber-400">Vélemények</Link>

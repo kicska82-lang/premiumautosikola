@@ -3,6 +3,7 @@ import { MapPin, Share2 } from "lucide-react";
 import type { SiteSettings } from "@/types/content";
 
 const documents = [
+  { href: "/kreta-ejogsi", label: "KRÉTA eJogsi – gyakorlati képzés" },
   { href: "/forgalmi-helyzetek", label: "Forgalmi helyzetek – bemutató" },
   { href: "/dokumentumok/kresz-gyorssegedlet", label: "KRESZ gyorssegédlet" },
   { href: "/dokumentumok/irasbeli-tajekoztato", label: "Írásbeli tájékoztató" },
