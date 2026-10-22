@@ -78,7 +78,7 @@ export default async function TrafficSituationsPage() {
                 </span>
               </div>
               <iframe
-                src="/forgalmi-labor/index.html?v=20261022-10"
+                src="/forgalmi-labor/index.html?v=20261022-11"
                 title="Prémium Autósiskola – Forgalmi Labor"
                 className="block h-[1380px] w-full border-0 md:h-[980px]"
                 allowFullScreen
