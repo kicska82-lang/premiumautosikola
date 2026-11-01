@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import MobileNav from "./MobileNav";
 
 export default function Header() {
   return (
@@ -11,7 +12,7 @@ export default function Header() {
           <span>4400 Nyíregyháza, Széchenyi utca 17. fszt. 2U.</span>
         </div>
       </div>
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6">
 
         {/* Logó */}
         <div className="flex items-center">
@@ -21,7 +22,7 @@ export default function Header() {
             width={220}
             height={60}
             priority
-            style={{ width: "220px", height: "auto" }}
+            className="h-auto w-[clamp(112px,36vw,150px)] sm:w-[190px] lg:w-[220px]"
           />
         </div>
 
@@ -37,9 +38,12 @@ export default function Header() {
         </nav>
 
         {/* Gomb */}
-        <Link href="/jelentkezes" className="rounded-xl bg-amber-500 px-6 py-3 font-semibold text-black transition hover:bg-amber-400">
-          Jelentkezem
-        </Link>
+        <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+          <MobileNav />
+          <Link href="/jelentkezes" className="whitespace-nowrap rounded-xl bg-amber-500 px-2 py-2.5 text-xs font-semibold text-black transition hover:bg-amber-400 sm:px-6 sm:py-3 sm:text-base">
+            Jelentkezem
+          </Link>
+        </div>
 
       </div>
     </header>
