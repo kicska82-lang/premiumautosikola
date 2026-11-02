@@ -53,7 +53,7 @@ function normalizePayload(table: z.infer<typeof tableSchema>, raw: Record<string
     return z.object({ title: z.string().min(2), price: z.string().min(1), minimum_age: z.string().optional(), exam_fee: z.string().optional(), price_details: z.string().optional(), icon: z.string().min(1), features: z.string(), status: z.string(), sort_order: z.number() }).parse({ ...raw, ...base, features: raw.features ?? "", price_details: raw.price_details ?? "" }) as unknown as Record<string, unknown>;
   }
   if (table === "instructors") {
-    const value = z.object({ name: z.string().min(2), category: z.string().min(1), experience: z.string(), description: z.string(), image: imageSchema, availability: z.string().optional(), status: z.string(), sort_order: z.number() }).parse({ ...raw, ...base, availability: raw.availability ?? "" });
+    const value = z.object({ name: z.string().min(2), phone: z.string().max(50).optional(), category: z.string().min(1), experience: z.string(), description: z.string(), image: imageSchema, availability: z.string().optional(), status: z.string(), sort_order: z.number() }).parse({ ...raw, ...base, phone: raw.phone ?? "", availability: raw.availability ?? "" });
     return value as unknown as Record<string, unknown>;
   }
   if (table === "cars") {

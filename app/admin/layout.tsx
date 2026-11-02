@@ -60,6 +60,18 @@ export default function AdminLayout({
             📝 Jelentkezések
           </Link>
 
+          <Link href="/admin/szerzodesek" className="block rounded-xl px-4 py-3 hover:bg-slate-800">
+            📄 Szerződéskészítő
+          </Link>
+
+          <Link href="/admin/mobilapp" className="block rounded-xl px-4 py-3 hover:bg-slate-800">
+            📱 Mobilalkalmazás-fiókok
+          </Link>
+
+          <Link href="/admin/vizsga-utvonalak" className="block rounded-xl px-4 py-3 hover:bg-slate-800">
+            🗺️ Vizsgaútvonalak
+          </Link>
+
         </nav>
       </aside>
 

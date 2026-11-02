@@ -65,6 +65,8 @@ export default function Instructors({ instructors }: { instructors: Instructor[]
                   {item.experience}
                 </p>
 
+                {item.phone && <a href={`tel:${item.phone.replace(/[^+\d]/g, "")}`} className="mt-2 text-sm font-bold text-amber-200 hover:text-amber-100">{item.phone}</a>}
+
                 <p className="mt-3 flex flex-wrap items-baseline justify-center gap-x-2 text-sm text-gray-300"><span className="text-xs font-semibold uppercase tracking-wider text-amber-300">Oktatott kategóriák:</span>{item.category}</p>
 
                 <Link href={`/oktatok/${item.id}`} className="mt-4 inline-flex w-full items-center justify-center whitespace-nowrap rounded-lg bg-amber-500 px-3 py-2.5 text-xs font-semibold text-black transition hover:bg-amber-400 sm:text-sm">

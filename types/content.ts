@@ -40,6 +40,7 @@ export interface PriceDetail {
 export interface Instructor {
   id: string | number;
   name: string;
+  phone?: string | null;
   category: string;
   experience: string;
   description: string;

@@ -1,0 +1,15 @@
+{
+  "name": "Prémium Autósiskola",
+  "short_name": "Prémium",
+  "description": "Digitális vezetési karton és tanulói alkalmazás",
+  "start_url": "/mobilapp-prototipus",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#e8edf5",
+  "theme_color": "#0a1329",
+  "icons": [
+    { "src": "/mobilapp-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/mobilapp-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

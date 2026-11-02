@@ -31,6 +31,7 @@ export default async function InstructorPage({ params }: { params: Promise<{ id:
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-300">Oktatott kategóriák</p>
               <p className="mt-3 text-lg font-semibold text-white">{instructor.category}</p>
               <p className="mt-3 text-slate-300">{instructor.experience}</p>
+              {instructor.phone && <a href={`tel:${instructor.phone.replace(/[^+\d]/g, "")}`} className="mt-4 inline-flex rounded-xl bg-amber-400 px-4 py-2.5 font-bold text-slate-950">Telefon: {instructor.phone}</a>}
             </div>
           </aside>
           <div>
