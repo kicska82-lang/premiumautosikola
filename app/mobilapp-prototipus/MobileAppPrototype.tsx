@@ -47,16 +47,8 @@ const lessonTypes = [
 type LessonType = (typeof lessonTypes)[number]["name"];
 const examRoutes = defaultExamRoutes;
 
-const lessons = [
-  { day: "08", month: "OKT", time: "14:00–15:40", title: "Városi vezetés", instructor: "Kicska Gábor", place: "Széchenyi utca 18." },
-  { day: "11", month: "OKT", time: "09:00–10:40", title: "Forgalmi gyakorlás", instructor: "Kicska Gábor", place: "Prémium Autósiskola" },
-  { day: "15", month: "OKT", time: "16:00–17:40", title: "Vizsgaútvonal", instructor: "Kicska Gábor", place: "Rutinpálya" },
-];
-
 export default function MobileAppPrototype() {
   const [tab, setTab] = useState<Tab>("home");
-  const [bookingOpen, setBookingOpen] = useState(false);
-  const [booked, setBooked] = useState(false);
 
   useEffect(() => {
     if (Capacitor.isNativePlatform()) return;
@@ -78,7 +70,7 @@ export default function MobileAppPrototype() {
         <section className="hidden max-w-md pt-16 lg:block">
           <p className="text-sm font-black uppercase tracking-[0.28em] text-[#b88619]">Első működő prototípus</p>
           <h1 className="mt-5 text-5xl font-black leading-[1.05] text-[#0d1730]">A jogosítványod<br /><span className="text-[#c8921c]">a zsebedben.</span></h1>
-          <p className="mt-6 text-lg leading-8 text-slate-600">Kattints végig a mobilalkalmazás fő részein. Ez még mintaadatokkal működik, de már megmutatja a végleges alkalmazás irányát és használatát.</p>
+          <p className="mt-6 text-lg leading-8 text-slate-600">A tanulói alkalmazás nyilvános kezdőképernyője. Személyes órákhoz, útvonalakhoz és oktatói visszajelzésekhez jelentkezz be a vezetési kartonba.</p>
           <div className="mt-9 space-y-4">
             {["Időpontfoglalás oktatóhoz", "Digitális vezetési karton", "Interaktív forgalmi helyzetek", "Személyes fejlődési statisztika"].map((item) => (
               <div key={item} className="flex items-center gap-3 font-bold text-slate-700"><span className="grid h-7 w-7 place-items-center rounded-full bg-[#0d1730] text-[#eebd42]"><Check className="h-4 w-4" /></span>{item}</div>
@@ -90,23 +82,15 @@ export default function MobileAppPrototype() {
           <div className="flex min-h-screen flex-col sm:min-h-[804px]">
             <AppHeader tab={tab} onBack={() => setTab("home")} onProfile={() => setTab("profile")} />
             <div className="flex-1 overflow-y-auto px-5 pb-28 pt-5">
-              {tab === "home" && <HomeScreen onNavigate={setTab} onBooking={() => setBookingOpen(true)} />}
-              {tab === "calendar" && <CalendarScreen onBooking={() => setBookingOpen(true)} />}
+              {tab === "home" && <HomeScreen onNavigate={setTab} />}
+              {tab === "calendar" && <CalendarScreen onNavigate={setTab} />}
               {tab === "log" && <MobileDriveLog />}
               {tab === "practice" && <PracticeScreen />}
               {tab === "routes" && <RoutesScreen />}
-              {tab === "profile" && <ProfileScreen />}
+              {tab === "profile" && <ProfileScreen onNavigate={setTab} />}
             </div>
             <BottomNav active={tab} onChange={setTab} />
           </div>
-
-          {bookingOpen && (
-            <div className="absolute inset-0 z-50 flex items-end bg-[#071022]/60 p-4 backdrop-blur-sm">
-              <div className="w-full rounded-[30px] bg-white p-6 shadow-2xl">
-                {!booked ? <><div className="mx-auto h-1.5 w-12 rounded-full bg-slate-200" /><p className="mt-6 text-xs font-black uppercase tracking-[0.2em] text-[#ba8618]">Új időpont</p><h2 className="mt-2 text-2xl font-black">Október 9., péntek</h2><div className="mt-5 rounded-2xl bg-slate-50 p-4"><p className="font-black">14:00–15:40</p><p className="mt-1 text-sm text-slate-500">Kicska Gábor · Opel Astra</p></div><button onClick={() => setBooked(true)} className="mt-5 w-full rounded-2xl bg-[#eab533] px-5 py-4 font-black text-[#101827] shadow-lg shadow-amber-300/30">Időpont lefoglalása</button><button onClick={() => setBookingOpen(false)} className="mt-2 w-full rounded-2xl px-5 py-3 font-bold text-slate-500">Mégsem</button></> : <div className="py-7 text-center"><span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-emerald-700"><Check className="h-8 w-8" /></span><h2 className="mt-5 text-2xl font-black">Sikeres foglalás!</h2><p className="mt-2 text-sm leading-6 text-slate-500">Az időpont bekerült a naptáradba. Az oktatód is értesítést kap róla.</p><button onClick={() => { setBookingOpen(false); setBooked(false); setTab("calendar"); }} className="mt-6 w-full rounded-2xl bg-[#0e1932] px-5 py-4 font-black text-white">Megnézem a naptárban</button></div>}
-              </div>
-            </div>
-          )}
         </section>
       </div>
     </main>
@@ -118,18 +102,32 @@ function AppHeader({ tab, onBack, onProfile }: { tab: Tab; onBack: () => void; o
   return <header className="sticky top-0 z-20 flex min-h-20 items-center justify-between border-b border-white/10 bg-[#0a1329]/98 px-5 text-white shadow-lg shadow-slate-900/10 backdrop-blur-xl">{tab === "home" ? <img src="/logo.svg" alt="Prémium Autósiskola" width={164} height={48} className="h-12 w-auto" /> : <button onClick={onBack} className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white" aria-label="Vissza"><ArrowLeft className="h-5 w-5" /></button>}<p className="absolute left-1/2 -translate-x-1/2 font-black text-white">{titles[tab]}</p><button className="grid h-10 w-10 place-items-center rounded-full bg-white/10 text-amber-300" aria-label="Profil" onClick={onProfile}><CircleUserRound className="h-5 w-5" /></button></header>;
 }
 
-function HomeScreen({ onNavigate, onBooking }: { onNavigate: (tab: Tab) => void; onBooking: () => void }) {
-  return <div><div className="flex items-start justify-between"><div><p className="text-sm font-bold text-slate-500">Jó reggelt,</p><h2 className="mt-1 text-3xl font-black">Gábor! <span aria-hidden>👋</span></h2></div><span className="rounded-full bg-amber-100 px-3 py-1.5 text-xs font-black text-amber-800">B kategória</span></div>
-    <div className="relative mt-6 overflow-hidden rounded-[28px] bg-[#101b35] p-5 text-white shadow-xl shadow-slate-300"><div className="absolute -right-10 -top-12 h-40 w-40 rounded-full bg-[#e7b232]/20 blur-2xl" /><p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-300">Következő vezetés</p><p className="mt-3 text-2xl font-black">Holnap, 14:00</p><p className="mt-1 text-sm text-slate-300">Városi vezetés · 2 tanóra</p><div className="mt-5 flex items-center gap-2 text-sm"><MapPin className="h-4 w-4 text-amber-300" /> Széchenyi utca 18.</div></div>
-    <div className="mt-5 grid grid-cols-3 gap-3"><Stat icon={Clock3} value="18" label="vezetett óra" /><Stat icon={Gauge} value="326" label="kilométer" /><Stat icon={Star} value="4,7" label="átlag" /></div>
-    <div className="mt-7 flex items-center justify-between"><h3 className="text-lg font-black">Gyors műveletek</h3><span className="text-xs font-bold text-slate-400">Minden egy helyen</span></div>
-    <div className="mt-3 grid grid-cols-2 gap-3"><QuickAction icon={CalendarDays} title="Időpontfoglalás" text="Szabad időpontok" onClick={onBooking} /><QuickAction icon={BookOpenCheck} title="Vezetési karton" text="Fejlődésem" onClick={() => onNavigate("log")} /><QuickAction icon={CarFront} title="Forgalmi helyzetek" text="Interaktív gyakorlás" onClick={() => onNavigate("practice")} /><QuickAction icon={MapPinned} title="Vizsgaútvonalak" text="Nyíregyháza térképen" onClick={() => onNavigate("routes")} /></div>
-    <div className="mt-7 rounded-[26px] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5"><div className="flex items-center gap-3"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#eab533] text-[#111a2e]"><Trophy className="h-5 w-5" /></span><div><p className="font-black">Heti célod: 75%</p><p className="text-xs text-slate-500">Már csak egy gyakorlás hiányzik</p></div></div><div className="mt-4 h-2 overflow-hidden rounded-full bg-amber-100"><div className="h-full w-3/4 rounded-full bg-[#d99c16]" /></div></div>
+function HomeScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
+  return <div>
+    <div className="rounded-[28px] bg-gradient-to-br from-[#101b35] to-[#23375c] p-5 text-white shadow-lg">
+      <p className="text-xs font-black uppercase tracking-[0.18em] text-amber-300">Prémium Autósiskola</p>
+      <h2 className="mt-2 text-2xl font-black">Üdv a tanulói alkalmazásban!</h2>
+      <p className="mt-3 text-sm leading-6 text-slate-200">A személyes vezetési óráidat, útvonalaidat és oktatói visszajelzéseidet a vezetési kartonba való bejelentkezés után éred el.</p>
+      <button onClick={() => onNavigate("log")} className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-[#eab533] px-4 py-3.5 text-sm font-black text-[#101827]"><BookOpenCheck className="h-5 w-5" /> Belépés a vezetési kartonba</button>
+    </div>
+    <h3 className="mt-7 text-lg font-black">Tanulást segítő funkciók</h3>
+    <div className="mt-3 grid grid-cols-2 gap-3">
+      <QuickAction icon={CalendarDays} title="Időpontok" text="Saját időpontok" onClick={() => onNavigate("calendar")} />
+      <QuickAction icon={CarFront} title="Forgalmi helyzetek" text="Interaktív gyakorlás" onClick={() => onNavigate("practice")} />
+      <QuickAction icon={MapPinned} title="Vizsgaútvonalak" text="Nyíregyházi útvonalak" onClick={() => onNavigate("routes")} />
+      <QuickAction icon={CircleUserRound} title="Profil" text="Belépés a kartonban" onClick={() => onNavigate("profile")} />
+    </div>
+    <div className="mt-6 flex gap-3 rounded-[22px] border border-blue-200 bg-blue-50 p-4 text-blue-950"><ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" /><p className="text-xs leading-5"><strong>Adatvédelem.</strong> Bejelentkezés nélkül nem jelenítünk meg személyes tanulói adatot.</p></div>
   </div>;
 }
 
-function CalendarScreen({ onBooking }: { onBooking: () => void }) {
-  return <div><div className="rounded-[26px] bg-[#101b35] p-5 text-white"><p className="text-sm text-slate-300">Októberi egyenleg</p><div className="mt-2 flex items-end justify-between"><p className="text-3xl font-black">6 tanóra</p><CalendarDays className="h-8 w-8 text-amber-300" /></div></div><div className="mt-6 flex items-center justify-between"><h2 className="text-xl font-black">Következő időpontok</h2><button onClick={onBooking} className="rounded-xl bg-[#eab533] px-3 py-2 text-xs font-black">+ Új foglalás</button></div><div className="mt-4 space-y-3">{lessons.map((lesson, index) => <div key={lesson.day} className="flex gap-4 rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm"><div className={`grid h-16 w-16 shrink-0 place-items-center rounded-2xl ${index === 0 ? "bg-[#101b35] text-white" : "bg-slate-100"}`}><div className="text-center"><p className="text-xl font-black leading-none">{lesson.day}</p><p className={`mt-1 text-[10px] font-black ${index === 0 ? "text-amber-300" : "text-slate-500"}`}>{lesson.month}</p></div></div><div className="min-w-0 flex-1"><p className="font-black">{lesson.title}</p><p className="mt-1 text-sm text-slate-500">{lesson.time} · {lesson.instructor}</p><p className="mt-2 flex items-center gap-1 text-xs text-slate-400"><MapPin className="h-3.5 w-3.5" />{lesson.place}</p></div></div>)}</div></div>;
+function CalendarScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
+  return <div className="rounded-[26px] bg-white p-5 shadow-sm">
+    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-amber-100 text-amber-800"><CalendarDays className="h-6 w-6" /></span>
+    <h2 className="mt-4 text-xl font-black">Időpontok</h2>
+    <p className="mt-2 text-sm leading-6 text-slate-600">Itt jelennek majd meg a saját vezetési időpontjaid. Mintaidőpontokat nem mutatunk, hogy ne keveredjenek össze a valódi adataiddal.</p>
+    <button onClick={() => onNavigate("log")} className="mt-5 w-full rounded-2xl bg-[#101b35] px-4 py-3.5 text-sm font-black text-white">Belépés a vezetési kartonba</button>
+  </div>;
 }
 
 type LessonPhase = "setup" | "tracking" | "finish" | "saved";
@@ -379,7 +377,7 @@ function JunctionEditor({ routeId, name, initialNote, coord, onClose }: { routeI
   </div>;
 }
 
-function ProfileScreen() { return <div className="text-center"><div className="mx-auto grid h-24 w-24 place-items-center rounded-full bg-[#101b35] text-3xl font-black text-amber-300">KG</div><h2 className="mt-4 text-2xl font-black">Kicska Gábor</h2><p className="mt-1 text-sm text-slate-500">B kategóriás tanuló</p><div className="mt-7 grid grid-cols-2 gap-3"><Stat icon={GraduationCap} value="60%" label="képzés" /><Stat icon={Trophy} value="8" label="jelvény" /></div><div className="mt-6 space-y-3 text-left">{["Személyes adataim", "Dokumentumaim", "Értesítések", "Segítség és visszajelzés"].map((item) => <button key={item} className="flex w-full items-center justify-between rounded-2xl bg-white p-4 font-bold shadow-sm">{item}<ChevronRight className="h-5 w-5 text-slate-300" /></button>)}</div></div>; }
+function ProfileScreen({ onNavigate }: { onNavigate: (tab: Tab) => void }) { return <div className="rounded-[26px] bg-white p-5 text-center shadow-sm"><div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-[#101b35] text-amber-300"><CircleUserRound className="h-8 w-8" /></div><h2 className="mt-4 text-xl font-black">Személyes profil</h2><p className="mt-2 text-sm leading-6 text-slate-600">A profil és a tanulói adatok csak bejelentkezés után érhetők el.</p><button onClick={() => onNavigate("log")} className="mt-5 w-full rounded-2xl bg-[#eab533] px-4 py-3.5 text-sm font-black text-[#101827]">Belépés a vezetési kartonba</button></div>; }
 
 function Stat({ icon: Icon, value, label }: { icon: typeof Clock3; value: string; label: string }) { return <div className="rounded-2xl bg-white p-3 text-center shadow-sm"><Icon className="mx-auto h-5 w-5 text-[#c28b18]" /><p className="mt-2 text-lg font-black">{value}</p><p className="text-[10px] font-bold text-slate-400">{label}</p></div>; }
 function QuickAction({ icon: Icon, title, text, onClick }: { icon: typeof Clock3; title: string; text: string; onClick: () => void }) { return <button onClick={onClick} className="rounded-[24px] border border-slate-200 bg-white p-4 text-left shadow-sm transition active:scale-95"><span className="grid h-11 w-11 place-items-center rounded-2xl bg-[#101b35] text-amber-300"><Icon className="h-5 w-5" /></span><span className="mt-4 block text-sm font-black">{title}</span><span className="mt-1 block text-[11px] text-slate-400">{text}</span></button>; }
