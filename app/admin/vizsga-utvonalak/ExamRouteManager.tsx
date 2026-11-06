@@ -14,6 +14,18 @@ function parseCoords(value: string): [number, number][] {
   return matches.map((match) => [Number(match[1]), Number(match[2])]);
 }
 
+function googleRoutePreviewUrl(path: [number, number][]) {
+  if (path.length < 2) return "https://maps.google.com";
+  const params = new URLSearchParams({
+    api: "1",
+    origin: `${path[0][0]},${path[0][1]}`,
+    destination: `${path[path.length - 1][0]},${path[path.length - 1][1]}`,
+    travelmode: "driving",
+  });
+  if (path.length > 2) params.set("waypoints", path.slice(1, -1).map(([lat, lng]) => `${lat},${lng}`).join("|"));
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
 function stopsText(route: ExamRoute) {
   return route.stops.map((stop) => `${stop.name} | ${stop.coord[0]}, ${stop.coord[1]} | ${stop.note}`).join("\n");
 }
@@ -101,7 +113,7 @@ export default function ExamRouteManager({ initialRoutes }: { initialRoutes: Exa
     <aside className="space-y-4">
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <h2 className="px-4 py-3 font-black">Útvonal-előnézet</h2>
-        <div className="h-[420px] bg-slate-100">{pathValid ? <RouteMap path={parsedPath} points={[]} color={route.color} /> : <div className="grid h-full place-items-center p-8 text-center text-sm font-semibold text-slate-500">Adj meg legalább két érvényes koordinátát az előnézethez.</div>}</div>
+        <div className="relative h-[420px] bg-slate-100">{pathValid ? <RouteMap path={parsedPath} points={[]} color={route.color} /> : <div className="grid h-full place-items-center p-8 text-center text-sm font-semibold text-slate-500">Adj meg legalább két érvényes koordinátát az előnézethez.</div>}{pathValid && <a href={googleRoutePreviewUrl(parsedPath)} target="_blank" rel="noreferrer" className="absolute right-3 top-3 z-[500] rounded-lg bg-white px-3 py-2 text-xs font-bold text-slate-900 shadow">Megnyitás Google Térképen ↗</a>}</div>
       </div>
       <p className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950">A térkép utcahálózaton illeszti össze a beírt pontokat. Mentés előtt ellenőrizd a vonalat és a csomópontokat a térképen/utcaképen. A hibás régi útvonalakat piszkozatként tartjuk, amíg a tényleges koordinátákat be nem állítod.</p>
     </aside>

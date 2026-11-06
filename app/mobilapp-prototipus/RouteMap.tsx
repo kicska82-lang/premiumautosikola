@@ -1,43 +1,68 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import type * as Leaflet from "leaflet";
+import "leaflet/dist/leaflet.css";
+
 type Point = { name: string; coord: [number, number] };
 
-function googleDirectionsEmbedUrl(path: [number, number][], points: Point[], key: string) {
-  const origin = path[0];
-  const destination = path[path.length - 1];
-  // Route shaping points describe the intended road course; named stops are only a fallback.
-  const waypoints = path.length > 2 ? path.slice(1, -1) : points.map((point) => point.coord);
-  const params = new URLSearchParams({
-    key,
-    origin: `${origin[0]},${origin[1]}`,
-    destination: `${destination[0]},${destination[1]}`,
-    mode: "driving",
-    language: "hu",
-    region: "HU",
-  });
+export default function RouteMap({ path, points, color }: { path: [number, number][]; points: Point[]; color: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<Leaflet.Map | null>(null);
+  const leafletRef = useRef<typeof Leaflet | null>(null);
+  const routeRef = useRef<Leaflet.Polyline | null>(null);
+  const markersRef = useRef<Leaflet.CircleMarker[]>([]);
+  const [ready, setReady] = useState(false);
 
-  if (waypoints.length > 0) {
-    params.set("waypoints", waypoints.map(([lat, lng]) => `${lat},${lng}`).join("|"));
-  }
+  useEffect(() => {
+    let disposed = false;
+    void import("leaflet").then((module) => {
+      if (disposed || !containerRef.current) return;
+      const L = module.default;
+      leafletRef.current = L;
+      const map = L.map(containerRef.current, { zoomControl: true, scrollWheelZoom: false }).setView([47.9551, 21.7165], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> közreműködők',
+      }).addTo(map);
+      mapRef.current = map;
+      setReady(true);
+      window.setTimeout(() => map.invalidateSize(), 80);
+    });
 
-  return `https://www.google.com/maps/embed/v1/directions?${params.toString()}`;
-}
+    return () => {
+      disposed = true;
+      mapRef.current?.remove();
+      mapRef.current = null;
+      leafletRef.current = null;
+      routeRef.current = null;
+      markersRef.current = [];
+      setReady(false);
+    };
+  }, []);
 
-export default function RouteMap({ path, points }: { path: [number, number][]; points: Point[]; color: string }) {
-  const embedKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
+  useEffect(() => {
+    const map = mapRef.current;
+    const L = leafletRef.current;
+    if (!ready || !map || !L || path.length === 0) return;
 
-  if (!embedKey) {
-    return <div className="flex h-full items-center justify-center px-6 text-center text-sm font-bold text-slate-500">
-      A Google Térkép megjelenítéséhez API-kulcs szükséges.
-    </div>;
-  }
+    routeRef.current?.remove();
+    markersRef.current.forEach((marker) => marker.remove());
+    routeRef.current = L.polyline(path, { color, weight: 6, opacity: 0.92, lineCap: "round", lineJoin: "round" }).addTo(map);
+    markersRef.current = points.map((point, index) => L.circleMarker(point.coord, {
+      radius: index === 0 || index === points.length - 1 ? 7 : 5,
+      color: "#ffffff",
+      weight: 2,
+      fillColor: index === 0 ? "#15803d" : index === points.length - 1 ? "#dc2626" : color,
+      fillOpacity: 1,
+    }).addTo(map).bindTooltip(`${index + 1}. ${point.name}`, { direction: "top", offset: [0, -4] }));
 
-  return <iframe
-    title="Google Térkép – vizsgaútvonal"
-    className="h-full w-full border-0"
-    loading="lazy"
-    allowFullScreen
-    referrerPolicy="strict-origin-when-cross-origin"
-    src={googleDirectionsEmbedUrl(path, points, embedKey)}
-  />;
+    map.fitBounds(routeRef.current.getBounds().pad(0.12), { maxZoom: 16, animate: false });
+    window.setTimeout(() => map.invalidateSize(), 80);
+  }, [path, points, color, ready]);
+
+  return <div className="relative h-full min-h-40 w-full overflow-hidden bg-[#dce5dc]">
+    <div ref={containerRef} className="absolute inset-0 z-0" />
+    {!ready && <div className="absolute inset-0 z-10 grid place-items-center bg-[#dce5dc] text-sm font-bold text-slate-600">Térkép betöltése…</div>}
+  </div>;
 }
