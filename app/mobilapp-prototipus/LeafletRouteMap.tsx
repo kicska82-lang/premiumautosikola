@@ -26,9 +26,12 @@ export default function LeafletRouteMap({ points, follow = false }: { points: Gp
       leafletRef.current = L;
       const map = L.map(containerRef.current, { zoomControl: true, scrollWheelZoom: false })
         .setView(nyiregyhaza, 15);
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      const cartoKey = process.env.NEXT_PUBLIC_CARTO_BASEMAP_KEY;
+      const tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png${cartoKey ? `?key=${encodeURIComponent(cartoKey)}` : ""}`;
+      L.tileLayer(tileUrl, {
+        subdomains: "abcd",
         maxZoom: 19,
-        attribution: "&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> közreműködők",
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> közreműködők · &copy; <a href="https://carto.com/attributions">CARTO</a>',
       }).addTo(map);
       mapRef.current = map;
       setReady(true);

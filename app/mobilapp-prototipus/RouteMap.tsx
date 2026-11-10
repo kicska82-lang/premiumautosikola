@@ -26,7 +26,9 @@ export default function RouteMap({ path, points, color }: { path: [number, numbe
       const L = module.default;
       leafletRef.current = L;
       const map = L.map(containerRef.current, { zoomControl: true, scrollWheelZoom: false, preferCanvas: true }).setView([47.9551, 21.7165], 13);
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      const cartoKey = process.env.NEXT_PUBLIC_CARTO_BASEMAP_KEY;
+      const tileUrl = `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png${cartoKey ? `?key=${encodeURIComponent(cartoKey)}` : ""}`;
+      L.tileLayer(tileUrl, {
         subdomains: "abcd",
         maxZoom: 19,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> közreműködők · <a href="https://www.openstreetmap.org/fixthemap">Térképhiba javítása</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
